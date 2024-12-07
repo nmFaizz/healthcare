@@ -13,6 +13,7 @@
 <style>
     a {
         text-decoration: none;
+        color: inherit;
     }
 
     .button-transparent {
@@ -25,17 +26,32 @@
 
     .button-transparent:hover {
         background-color: whitesmoke;
-        color: #007E85;
+        color: #007E85 !important;
     }
 
     .button-green {
         background-color: #007E85;
         padding: 10px 20px;
         border-radius: 5px;
+        color: white !important;
     }
 
     .button-green:hover {
         background-color: #005C63;
+    }
+
+    #hero-img {
+        width: 500px;
+    }
+
+    @media screen and (max-width: 1000px) {
+        #hero-img {
+            width: 300px;
+        }
+
+        #hero h1 {
+            font-size: 1.8rem;
+        }
     }
 
     ul li a:hover {
@@ -44,7 +60,7 @@
 </style>
 <body class="bg-body-tertiary">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+        <div class="container-md">
             <a class="navbar-brand" href="#">
                 <img src="./images/logo.png" alt="logo" width="200">
             </a>
@@ -74,6 +90,23 @@
             </div>
         </div>
     </nav>
+
+    <!-- hero -->
+    <main>
+        <section id="hero" class="container-md py-5 min-vh-100 d-flex gap-5 flex-column flex-sm-row align-items-center">
+            <div class="flex-fill">
+                <h1>Providing Quality Healthcare for a Brighter and Healthy Future</h1>
+                <p>At our hospital, we are dedicated to providing exceptional medical care to our patients and their families. Our experienced team of medical professionals, cutting-edge technology, and compassionate approach make us a leader in the healthcare industry</p>
+
+                <div class="mt-5">
+                    <a href="#" class="button-green">Appointments</a>
+                </div>
+            </div>
+            <div class="flex-fill">
+                <img id="hero-img" src="./images/hero-img.png" alt="hero">
+            </div>
+        </section>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
