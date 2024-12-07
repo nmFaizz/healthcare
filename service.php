@@ -119,7 +119,7 @@
         </div>
     </nav>
     
-    <div class="container-fluid py-5 d-flex  flex-column flex-md-row justify-content-center bg-hero" id="service">
+    <div class="container-fluid py-5 d-flex  flex-column flex-lg-row justify-content-center bg-hero" id="service">
         <div class="p-5 lc-block col-xxl-7 col-lg-8 col-12 jumbotron-content">
             <div class="lc-block">
                 <div editable="rich">
