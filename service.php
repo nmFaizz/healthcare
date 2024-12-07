@@ -11,6 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <style>
+    body{
+        background-color: whitesmoke;
+    }
     /* -------------- Nav ----------------- */
     a {
         text-decoration: none;
@@ -73,22 +76,22 @@
         border-radius: 10px;
         gap: 30px;
     }
-    .appointment-input{
-        gap: 5px;
-    }
-    .jumbotron-content .button-transparent{
+    .border-green{
         border: 2px solid #007E85;
     }
-    .jumbotron-content .button-transparent:hover{
+    .jumbotron-content .border-green:hover{
         background-color: #007E85;
     }
     input{
         border: 1px solid black;
     }
+    .search-button{
+        width: 200px;
+    }
 </style>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+        <div class="container-md">
             <a class="navbar-brand" href="#">
                 <img src="./images/logo.png" alt="logo" width="200">
             </a>
@@ -119,7 +122,7 @@
         </div>
     </nav>
     
-    <div class="container-fluid py-5 d-flex  flex-column flex-lg-row justify-content-center bg-hero" id="service">
+    <div class="container-fluid py-5 d-flex flex-column flex-lg-row justify-content-center bg-hero" id="service">
         <div class="p-5 lc-block col-xxl-7 col-lg-8 col-12 jumbotron-content">
             <div class="lc-block">
                 <div editable="rich">
@@ -136,35 +139,55 @@
             </div>
             <div class="d-flex gap-3 mt-5">
                 <a class="button-green text-light text-center rounded-pill fw-semibold" href="#">Get Quote Now</a>
-                <a class="button-transparent text-light text-center rounded-pill fw-semibold" href="#">Learn More</a>
+                <a class="button-transparent text-light text-center rounded-pill fw-semibold border-green" href="#">Learn More</a>
             </div>
         </div>
         <div class="form-appointment d-flex flex-column text-black fw-semibold">
             <h1>Book Appointment</h1>
-            <div class="appointment-input d-flex flex-column">
+            <div class="appointment-input d-flex flex-column gap-2">
                 <label for="name" class="form-label">Name *</label>
-                <input type="text" class="form-control" id="name" placeholder="Full Name *">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Full Name *">
                 <label for="email" class="form-label">Email Address *</label>
-                <input type="email" class="form-control" id="email" placeholder="example@gmail.com">
+                <input type="email" class="form-control" name="email" id="email" placeholder="example@gmail.com">
                 <label for="department" class="form-label">Department *</label>
-                <select class="form-select form-select-sm" aria-label="Small select example" id="department">
+                <select class="form-select form-select-sm" aria-label="Small select example" name="department" id="department">
                     <option selected>Please Select</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                 </select>
-                <label for="time" class="form-label">Time *</label>
-                <select class="form-select form-select-sm" aria-label="Small select example" id="time">
+                <label for="time" class="form-label" id="name">Time *</label>
+                <select class="form-select form-select-sm" aria-label="Small select example" name="time" id="time">
                     <option selected>4:00 Available</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                 </select>
             </div>
-            <a class="button-green text-light text-center" href="#">Book Appointment</a>
+            <button class="button-green text-light text-center border-0" href="#">Book Appointment</button>
         </div>
     </div>
 
+    <div class="container my-5 find-doctor bg-white rounded-4 p-5">
+        <h1>Find A Doctor</h1>
+        <div class="d-flex flex-column flex-lg-row gap-3 mt-4">
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" class="form-control border-green" id="find-doctor-name" placeholder="Name">
+                    <label for="floatingInputGrid">Name</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" class="form-control border-green" id="find-doctor-speciality" placeholder="Speciality">
+                    <label for="floatingInputGrid">Speciality</label>
+                </div>
+            </div>
+            <button class="button-green text-white border-0 search-button fw-semibold">Search</button>
+        </div>
+    </div>
+
+    <div>CoIJDSOIFJDSOIFJ</div>
     
 
 
