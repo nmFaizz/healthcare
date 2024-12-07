@@ -113,8 +113,8 @@
             </div>
         </section>
 
-        <section id="appointment" class="container-md rounded p-3 mb-5 bg-white">
-            <h3>Find A Doctor</h3>
+        <section id="appointment" class="container-md rounded p-4 mb-5 bg-white">
+            <h4 class="mb-4">Find A Doctor</h4>
             <div class="d-flex flex-column flex-md-row gap-4">
                 <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name">
                 <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Speciality">
