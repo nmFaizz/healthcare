@@ -60,7 +60,7 @@
 </style>
 <body class="bg-body-tertiary">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-md">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="./images/logo.png" alt="logo" width="200">
             </a>
@@ -93,7 +93,7 @@
 
     <!-- hero -->
     <main>
-        <section id="hero" class="container-md py-5 min-vh-100 d-flex gap-5 flex-column flex-sm-row align-items-center">
+        <section id="hero" class="container-md py-5 d-flex gap-5 flex-column flex-sm-row align-items-center">
             <div class="flex-fill">
                 <h1>Providing Quality Healthcare for a Brighter and Healthy Future</h1>
                 <p>At our hospital, we are dedicated to providing exceptional medical care to our patients and their families. Our experienced team of medical professionals, cutting-edge technology, and compassionate approach make us a leader in the healthcare industry</p>
@@ -104,6 +104,15 @@
             </div>
             <div class="flex-fill">
                 <img id="hero-img" src="./images/hero-img.png" alt="hero">
+            </div>
+        </section>
+
+        <section id="appointment" class="container-md rounded p-4 my-5 bg-light-subtle">
+            <h3>Find A Doctor</h3>
+            <div class="d-flex flex-column flex-md-row gap-4">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="NAME">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="SPECIALITY">
+                <a href="#" class="button-green">SEARCH</a>
             </div>
         </section>
     </main>
