@@ -22,6 +22,7 @@
         padding: 10px 20px;
         border-radius: 5px;
         margin-right: 10px;
+        text-align: center;
     }
 
     .button-transparent:hover {
@@ -34,6 +35,7 @@
         padding: 10px 20px;
         border-radius: 5px;
         color: white !important;
+        text-align: center;
     }
 
     .button-green:hover {
@@ -42,6 +44,10 @@
 
     #hero-img {
         width: 500px;
+    }
+
+    #hero h1 span {
+        color: #007E85 !important;
     }
 
     @media screen and (max-width: 1000px) {
@@ -60,7 +66,7 @@
 </style>
 <body class="bg-body-tertiary">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+        <div class="container-md">
             <a class="navbar-brand" href="#">
                 <img src="./images/logo.png" alt="logo" width="200">
             </a>
@@ -95,7 +101,7 @@
     <main>
         <section id="hero" class="container-md py-5 d-flex gap-5 flex-column flex-sm-row align-items-center">
             <div class="flex-fill">
-                <h1>Providing Quality Healthcare for a Brighter and Healthy Future</h1>
+                <h1>Providing Quality <span>Healthcare</span> for a <span>Brighter</span> and <span>Healthy</span> Future</h1>
                 <p>At our hospital, we are dedicated to providing exceptional medical care to our patients and their families. Our experienced team of medical professionals, cutting-edge technology, and compassionate approach make us a leader in the healthcare industry</p>
 
                 <div class="mt-5">
@@ -107,11 +113,11 @@
             </div>
         </section>
 
-        <section id="appointment" class="container-md rounded p-4 my-5 bg-light-subtle">
+        <section id="appointment" class="container-md rounded p-3 mb-5 bg-white">
             <h3>Find A Doctor</h3>
             <div class="d-flex flex-column flex-md-row gap-4">
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="NAME">
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="SPECIALITY">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Speciality">
                 <a href="#" class="button-green">SEARCH</a>
             </div>
         </section>
