@@ -19,7 +19,7 @@
             $_SESSION['email']=$data['email'];
             $_SESSION['roles']=$data['roles'];
 
-            header("location:Home.php");
+            header("location:HomePage.php");
 
         }else{
             echo "<script> alert('login tidak berhasil, coba lagi!'); window.location.assign('FormLogin.php');</script>";

@@ -23,6 +23,8 @@
 
         <?php if($_SESSION['roles']=='pasien'): ?>
             <p>Halo, <?= $_SESSION['nama']?></p>
+            <a href="service.php">Make an appointment</a>
+            <br />
         <?php endif; ?>
 
         <?php if($_SESSION['roles']=='dokter'): ?>
