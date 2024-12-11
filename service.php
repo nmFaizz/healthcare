@@ -93,6 +93,29 @@
     .search-button{
         width: 200px;
     }
+
+    /* ----  Service We Provide ----*/
+
+    #service-list{
+        padding-bottom: 50px;
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+    .card {
+        width: 390px;
+        border: none;
+    }   
+    .card img{
+        height: 220px;
+    }
+
+    #customer-review .card{
+        width: 250px;
+    }
+    #customer-review .card img{
+        height: 170px;
+    }
+
 </style>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -174,28 +197,108 @@
         </div>
     </div>
 
-    <div class="container my-5 find-doctor bg-white rounded-4 p-5">
-        <h1>Find A Doctor</h1>
-        <div class="d-flex flex-column flex-lg-row gap-3 mt-4">
-            <div class="col-md">
-                <div class="form-floating">
-                    <input type="text" class="form-control border-green" id="find-doctor-name" placeholder="Name">
-                    <label for="floatingInputGrid">Name</label>
+    <section>
+        <div class="container my-5 find-doctor bg-white rounded-4 p-5">
+            <h1>Find A Doctor</h1>
+            <div class="d-flex flex-column flex-lg-row gap-3 mt-4">
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" class="form-control border-green" id="find-doctor-name" placeholder="Name">
+                        <label for="floatingInputGrid">Name</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md">
-                <div class="form-floating">
-                    <input type="text" class="form-control border-green" id="find-doctor-speciality" placeholder="Speciality">
-                    <label for="floatingInputGrid">Speciality</label>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" class="form-control border-green" id="find-doctor-speciality" placeholder="Speciality">
+                        <label for="floatingInputGrid">Speciality</label>
+                    </div>
                 </div>
+                <button class="button-green text-white border-0 search-button fw-semibold">Search</button>
             </div>
-            <button class="button-green text-white border-0 search-button fw-semibold">Search</button>
         </div>
-    </div>
-
-    <div>CoIJDSOIFJDSOIFJ</div>
+    </section>
     
 
+    <!------- Services we Prodivide -------->
+    <section>
+        <div class="container" id="service-list">
+            <h1 style="color: #007E85" class="text-center">Services We Provide</h1>
+            <p class="text-center mb-5">Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar <br> elementum tempus hac tellus libero accumsan. </p>
+            <div class="row gap-4 mb-3 d-flex justify-content-center">
+                <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                    <img src="./images/img1.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Dental treatments</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consecte tur adipiscing elit semper dalaracc lacus vel facilisis volutpat est velitolm.</p>
+                    </div>
+                </div>
+            
+            <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                <img src="./images/img2.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Eye Care</h5>
+                    <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto quibusdam eaque laboriosam modi libero vitae dolorum nobis, dicta suscipit, aliquam vel nihil aut reiciendis eum sit fuga ab. Autem, quam?</p>
+                </div>
+            </div>
+            
+            <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                <img src="./images/img3.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Surgery</h5>
+                    <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio tenetur in soluta hic, consectetur, rem provident harum rerum similique animi obcaecati ducimus fuga reprehenderit laborum porro laudantium. Dolore, quisquam expedita.</p>
+                </div>
+            </div>
+            </div>
+            
+            <div class="row gap-4 d-flex justify-content-center">
+            <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                <img src="./images/img4.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Cardiology</h5>
+                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae ad illo cupiditate sequi dolore incidunt exercitationem aliquam, provident animi deleniti saepe? Error culpa cumque natus minus enim inventore iusto numquam.</p>
+                </div>
+            </div>
+            
+            <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                <img src="./images/img5.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Diagnosis</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. A perspiciatis doloremque rerum quae perferendis! Unde recusandae voluptate quis quibusdam corrupti blanditiis, beatae fuga consectetur sed eius id natus commodi rem!</p>
+                </div>
+            </div>
+            
+            <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                <img src="./images/img6.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Bones treatments</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eos soluta quasi voluptatibus incidunt quisquam temporibus quaerat nihil reprehenderit quo at facere consequatur, repellendus eligendi quis cumque velit est eveniet.</p>
+                </div>
+            </div>
+            </div>        
+        </div>
+    </section>
+    <!------- End Services we Provide -------->
+    
+    <!------- Customer Reviews------->
+    <section>
+    <div class="container" id="customer-review">
+        <h1 style="color: #007E85" class="text-center">What Our Customer Say</h1>
+        <p class="text-center mb-5">Problems trying to resolve the conflict between the two major realms of <br> Classical physics: Newtonian mechanics </p>
+        <div class="row gap-5 mb-3 d-flex justify-content-center">
+            <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                <img src="./images/icn bxs-star.png" alt="">
+                <img src="./images/card-content.png" class="card-img-top" alt="...">
+            </div>
+            <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                <img src="./images/card-content.png" class="card-img-top" alt="...">
+                
+            </div>
+            <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                <img src="./images/card-content.png" class="card-img-top" alt="...">
+            </div>
+        </div>
+        
+    </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
