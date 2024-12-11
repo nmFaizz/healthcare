@@ -1,3 +1,6 @@
+
+<?php session_start() ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -159,8 +162,8 @@
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    <a class="button-transparent" href="#">Sign Up</a>
-                    <a class="button-green text-light" href="#">Log In</a>
+                    <a class="button-transparent" href="FormRegistrasi.php">Sign Up</a>
+                    <a class="button-green text-light" href="FormLogin.php">Log In</a>
                 </span>
             </div>
         </div>
@@ -420,11 +423,79 @@
             <h1 class="text-green text-center">Trusted by 10,000+ companies around the world</h1>
 
             <div class="d-flex flex-wrap gap-5 justify-content-center mt-5">
-                <img src="./images/Google.png" alt="Google">
-                <img src="./images/Facebook.png" alt="facebook">
+                <img src="./images/google1.png" alt="Google">
+                <img src="./images/facebook1.png" alt="facebook">
                 <img src="./images/Twitch.png" alt="twitch">
                 <img src="./images/Webflow.png" alt="webflow">
                 <img src="./images/YouTube.png" alt="youtube">
+            </div>
+        </section>
+
+        <section class="mt-5">
+            <div style="background-color: #007E85;" class="text-white py-4" id="footer">
+                <div class="container p-5 d-flex flex-wrap justify-content-between">
+                    <div class="mb-4 me-4">
+                        <a class="navbar-brand" href="#">
+                            <img src="./images/logofooter.png" alt="logo" width="200">
+                        </a>
+                        <p>Copyright © 2022 BRIX Templates <br> | All Rights Reserved </p>
+                    </div>
+                    <div class="mb-4 me-4">
+                        <h5 class="fw-bold mb-4" >Product</h5>
+                        <li class="d-flex flex-column">
+                            <a href="#" >Features</a>
+                            <a href="#" >Pricing</a>
+                            <a href="#" >Case Studies</a>
+                            <a href="#" >Reviews</a>
+                            <a href="#" >Updates</a>
+                        </li>
+                    </div>
+                    <div class="mb-4 me-4">
+                        <h5 class="fw-bold mb-4" >Company</h5>
+                        <li class="d-flex flex-column">
+                            <a href="#" >About</a>
+                            <a href="#" >Contact Us</a>
+                            <a href="#" >Careers</a>
+                            <a href="#" >Cultures</a>
+                            <a href="#" >Blog</a>
+                        </li>
+                    </div>
+                    <div class="mb-4 me-4">
+                        <h5 class="fw-bold mb-4" >Support</h5>
+                        <li class="d-flex flex-column">
+                            <a href="#" >Getting Started</a>
+                            <a href="#" >Help Center</a>
+                            <a href="#" >Server Status</a>
+                            <a href="#" >Report a Bug</a>
+                            <a href="#" >Chat Support</a>
+                        </li>
+                    </div>
+                    <div class="mb-4 me-4">
+                        <h5 class="fw-bold mb-4" >Support</h5>
+                        <li class="d-flex flex-column">
+                            <a href="#" >
+                                <img src="./images/Facebook.png" alt="">
+                                Facebook
+                            </a>
+                            <a href="#" >
+                                <img src="./images/Twitter.png" alt="">
+                                Twitter
+                            </a>
+                            <a href="#" >
+                                <img src="./images/Instagram.png" alt="">
+                                Instagram
+                            </a>
+                            <a href="#" >
+                                <img src="./images/LinkedIn.png" alt="">
+                                LinkedIn
+                            </a>
+                            <a href="#" >
+                                <img src="./images/YouTube.png" alt="">
+                                Youtube
+                            </a>
+                        </li>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
