@@ -16,9 +16,25 @@
         color: inherit;
     }
 
+    .text-d-green {
+        color: #005C63 !important;
+    }
+
+    .text-green {
+        color: #007E85 !important;
+    }   
+
+    .bg-d-green {
+        background-color: #005C63 !important;
+    }
+
+    .bg-green {
+        background-color: #007E85 !important;
+    }
+
     .button-transparent {
         background-color: transparent;
-        color: wheat;
+        color: #005C63 !important;
         padding: 10px 20px;
         border-radius: 5px;
         margin-right: 10px;
@@ -42,6 +58,14 @@
         background-color: #005C63;
     }
 
+    .mt-7 {
+        margin-top: 5rem;
+    }
+
+    .mt-10 {
+        margin-top: 10rem;
+    }
+
     #hero-img {
         width: 500px;
     }
@@ -50,18 +74,63 @@
         color: #007E85 !important;
     }
 
+    #cta {
+        gap: 10rem;
+    }
+
+    #service-list{
+        padding-bottom: 50px;
+        margin-top: 10rem;
+        margin-bottom: 80px;
+    }
+    
+    .card {
+        width: 390px;
+        border: none;
+    }   
+    .card img{
+        height: 220px;
+    }
+
+    #customer-review .card{
+        width: 250px;
+    }
+    #customer-review .card img{
+        height: 170px;
+    }
+
+    #team-list .doctor-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-color: black;
+        margin: 0 auto;
+    }
+
+    #testimonials .profile-img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: black;
+    }
+
+    ul li a:hover {
+        color: #007E85 !important;
+    }
+
     @media screen and (max-width: 1000px) {
         #hero-img {
             width: 300px;
         }
 
+        #cta {
+            gap: 5rem;
+        }
+
         #hero h1 {
             font-size: 1.8rem;
         }
-    }
-
-    ul li a:hover {
-        color: #007E85 !important;
+        
     }
 </style>
 <body class="bg-body-tertiary">
@@ -100,7 +169,7 @@
     <!-- hero -->
     <main>
         <section id="hero" class="container-md py-5 d-flex gap-5 flex-column flex-sm-row align-items-center">
-            <div class="flex-fill">
+            <div class="flex-fill d-flex flex-column text-center text-sm-start align-items-center align-items-sm-start">
                 <h1>Providing Quality <span>Healthcare</span> for a <span>Brighter</span> and <span>Healthy</span> Future</h1>
                 <p>At our hospital, we are dedicated to providing exceptional medical care to our patients and their families. Our experienced team of medical professionals, cutting-edge technology, and compassionate approach make us a leader in the healthcare industry</p>
 
@@ -113,12 +182,249 @@
             </div>
         </section>
 
-        <section id="appointment" class="container-md rounded p-4 mb-5 bg-white">
+        <section id="appointment" class="container-md rounded p-4 bg-white">
             <h4 class="mb-4">Find A Doctor</h4>
             <div class="d-flex flex-column flex-md-row gap-4">
                 <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name">
                 <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Speciality">
                 <a href="#" class="button-green">SEARCH</a>
+            </div>
+        </section>
+
+        <section id="stat" class="container-md mt-7">
+            <h1 class="text-center text-green">Our Results In Numbers</h1>
+            <div class="d-flex flex-column flex-md-row gap-5 mt-5">
+                    <div class="flex-fill text-center">
+                        <h3 class="text-green fs-1 fw-bold">
+                            99%
+                        </h3>
+                        <p class="fw-bold">Customer Satisfaction</p>
+                    </div>
+                    <div class="flex-fill text-center">
+                        <h3 class="text-green fs-1 fw-bold">
+                            15k
+                        </h3>
+                        <p class="fw-bold">Online Patients</p>
+                    </div>
+                    <div class="flex-fill text-center">
+                        <h3 class="text-green fs-1 fw-bold">
+                            12k
+                        </h3>
+                        <p class="fw-bold">Patients Recovered</p>
+                    </div>
+                    <div class="flex-fill text-center">
+                        <h3 class="text-green fs-1 fw-bold">
+                            240%
+                        </h3>
+                        <p class="fw-bold">Company Growth</p>
+                    </div>
+                </div>
+        </section>
+
+        <section id="cta" class="d-flex align-items-center flex-column flex-md-row container-md mt-10">
+            <div class="flex-1">
+                <h1 class="text-green">You have lots of reason to choose us</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.</p>
+
+                <div class="d-flex gap-3 mt-5">
+                    <a href="#" class="button-green rounded-pill">Get Started</a>
+                    <a href="#" class="button-transparent rounded-pill">Talk to Sales</a>
+                </div>
+            </div>
+            <div class="flex-1">
+                <img src="./images/surgery.png" alt="surgery" class="img-fluid">
+            </div>
+        </section>
+
+        <section>
+            <div class="container" id="service-list">
+                <h1 style="color: #007E85" class="text-center">Services We Provide</h1>
+                <p class="text-center mb-5">Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar <br> elementum tempus hac tellus libero accumsan. </p>
+                <div class="row gap-4 mb-3 d-flex justify-content-center">
+                    <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                        <img src="./images/img1.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Dental treatments</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consecte tur adipiscing elit semper dalaracc lacus vel facilisis volutpat est velitolm.</p>
+                        </div>
+                    </div>
+                
+                <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                    <img src="./images/img2.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Eye Care</h5>
+                        <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto quibusdam eaque laboriosam modi libero vitae dolorum nobis, dicta suscipit, aliquam vel nihil aut reiciendis eum sit fuga ab. Autem, quam?</p>
+                    </div>
+                </div>
+                
+                <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                    <img src="./images/img3.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Surgery</h5>
+                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio tenetur in soluta hic, consectetur, rem provident harum rerum similique animi obcaecati ducimus fuga reprehenderit laborum porro laudantium. Dolore, quisquam expedita.</p>
+                    </div>
+                </div>
+                </div>
+                
+                <div class="row gap-4 d-flex justify-content-center">
+                <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                    <img src="./images/img4.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Cardiology</h5>
+                        <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae ad illo cupiditate sequi dolore incidunt exercitationem aliquam, provident animi deleniti saepe? Error culpa cumque natus minus enim inventore iusto numquam.</p>
+                    </div>
+                </div>
+                
+                <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                    <img src="./images/img5.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Diagnosis</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. A perspiciatis doloremque rerum quae perferendis! Unde recusandae voluptate quis quibusdam corrupti blanditiis, beatae fuga consectetur sed eius id natus commodi rem!</p>
+                    </div>
+                </div>
+                
+                <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                    <img src="./images/img6.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Bones treatments</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eos soluta quasi voluptatibus incidunt quisquam temporibus quaerat nihil reprehenderit quo at facere consequatur, repellendus eligendi quis cumque velit est eveniet.</p>
+                    </div>
+                </div>
+                </div>        
+            </div>
+        </section>
+
+        <section class="container-md" id="team-list">
+            <h1 style="color: #007E85" class="text-center">Meet Our Team</h1>
+            <p class="text-center mb-5">Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar <br> elementum tempus hac tellus libero accumsan. </p>
+
+            <div class="row d-flex justify-content-center gap-4">
+                <div class="card col-4 bg-white px-4 py-5 rounded-4">
+                    <figure class="doctor-img d-flex justify-content-center align-items-center">
+                        <img src="./images/doc1.png" alt="doc1" class="object-fit-cover" style="width: 100%; height: 100%; object-fit: cover;">
+                    </figure>
+
+                    <div class="text-center mt-5">
+                        <h5 class="text-green">John Carter</h5>
+                        <h6>CEO & CO-FOUNDER</h6>
+                        <p>Lorem ipsum dolor sit amet consecte adipiscing elit amet hendrerit pretium nulla sed enim iaculis mi.</p>
+                    </div>
+                </div>
+                <div class="card col-4 bg-white px-4 py-5 rounded-4">
+                    <figure class="doctor-img d-flex justify-content-center align-items-center">
+                        <img src="./images/doc2.png" alt="doc1" class="object-fit-cover" style="width: 100%; height: 100%; object-fit: cover;">
+                    </figure>
+
+                    <div class="text-center mt-5">
+                        <h5 class="text-green">Sophie Moore</h5>
+                        <h6>DENTAL SPECIALIST</h6>
+                        <p>Lorem ipsum dolor sit amet consecte adipiscing elit amet hendrerit pretium nulla sed enim iaculis mi.</p>
+                    </div>
+                </div>
+                <div class="card col-4 bg-white px-4 py-5 rounded-4">
+                    <figure class="doctor-img d-flex justify-content-center align-items-center">
+                        <img src="./images/doc3.png" alt="doc1" class="object-fit-cover" style="width: 100%; height: 100%; object-fit: cover;">
+                    </figure>
+
+                    <div class="text-center mt-5">
+                        <h5 class="text-green">Matt Cannon</h5>
+                        <h6>ORTHOPEDIC</h6>
+                        <p>Lorem ipsum dolor sit amet consecte adipiscing elit amet hendrerit pretium nulla sed enim iaculis mi.</p>
+                    </div>
+                </div>
+                <div class="card col-4 bg-white px-4 py-5 rounded-4">
+                    <figure class="doctor-img d-flex justify-content-center align-items-center">
+                        <img src="./images/doc4.png" alt="doc1" class="object-fit-cover" style="width: 100%; height: 100%; object-fit: cover;">
+                    </figure>
+
+                    <div class="text-center mt-5">
+                        <h5 class="text-green">Andy Smith</h5>
+                        <h6>BRAIN SURGEON</h6>
+                        <p>Lorem ipsum dolor sit amet consecte adipiscing elit amet hendrerit pretium nulla sed enim iaculis mi.</p>
+                    </div>
+                </div>
+                <div class="card col-4 bg-white px-4 py-5 rounded-4">
+                    <figure class="doctor-img d-flex justify-content-center align-items-center">
+                        <img src="./images/doc5.png" alt="doc1" class="object-fit-cover" style="width: 100%; height: 100%; object-fit: cover;">
+                    </figure>
+
+                    <div class="text-center mt-5">
+                        <h5 class="text-green">Lily Woods</h5>
+                        <h6>HEART SPECIALIST</h6>
+                        <p>Lorem ipsum dolor sit amet consecte adipiscing elit amet hendrerit pretium nulla sed enim iaculis mi.</p>
+                    </div>
+                </div>
+                <div class="card col-4 bg-white px-4 py-5 rounded-4">
+                    <figure class="doctor-img d-flex justify-content-center align-items-center">
+                        <img src="./images/doc6.png" alt="doc1" class="object-fit-cover" style="width: 100%; height: 100%; object-fit: cover;">
+                    </figure>
+
+                    <div class="text-center mt-5">
+                        <h5 class="text-green">Patrick Meyer</h5>
+                        <h6>EYE SPECIALIST</h6>
+                        <p>Lorem ipsum dolor sit amet consecte adipiscing elit amet hendrerit pretium nulla sed enim iaculis mi.</p>
+                    </div>
+                </div>
+        </section>
+
+        <section id="testimonials" class="container-md mt-7">
+            <h1 style="color: #007E85" class="text-center">Testimonials</h1>
+            <p class="text-center mb-5">Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar <br> elementum tempus hac tellus libero accumsan. </p>
+            <div class="row d-flex justify-content-center gap-4">
+                <div class="card col-6 bg-white p-5 rounded-4">
+                    <figure class="profile-img d-flex justify-content-start align-items-start">
+                        <img src="./images/testi1.png" alt="doc1" class="object-fit-cover" style="width: 100%; height: 100%; object-fit: cover;">
+                    </figure>
+
+                    <div class="mt-2">
+                        <h5>“An amazing service”</h5>
+                        <p>Lorem ipsum dolor sit amet consecte adipiscing elit amet hendrerit pretium nulla sed enim iaculis mi.</p>
+
+                        <h6 class="text-green mt-5">John Carter</h6>
+                        <p>CEO at Google</p>
+                    </div>
+                    
+                </div>
+                <div class="card col-6 bg-white p-5 rounded-4">
+                    <figure class="profile-img d-flex justify-content-start align-items-start">
+                        <img src="./images/testi2.png" alt="doc1" class="object-fit-cover" style="width: 100%; height: 100%; object-fit: cover;">
+                    </figure>
+
+                    <div class="mt-2">
+                        <h5>“One of a kind service”</h5>
+                        <p>Lorem ipsum dolor sit amet consecte adipiscing elit amet hendrerit pretium nulla sed enim iaculis mi.</p>
+
+                        <h6 class="text-green mt-5">Monroe</h6>
+                        <p>MD at Facebook</p>
+                    </div>
+                    
+                </div>
+                <div class="card col-6 bg-white p-5 rounded-4">
+                    <figure class="profile-img d-flex justify-content-start align-items-start">
+                        <img src="./images/testi3.png" alt="doc1" class="object-fit-cover" style="width: 100%; height: 100%; object-fit: cover;">
+                    </figure>
+
+                    <div class="mt-2">
+                        <h5>“The best service</h5>
+                        <p>Lorem ipsum dolor sit amet consecte adipiscing elit amet hendrerit pretium nulla sed enim iaculis mi.</p>
+
+                        <h6 class="text-green mt-5">Andy Smith</h6>
+                        <p>CEO Dot Austere</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="companies" class="container-md mt-7 mb-5">
+            <h1 class="text-green text-center">Trusted by 10,000+ companies around the world</h1>
+
+            <div class="d-flex flex-wrap gap-5 justify-content-center mt-5">
+                <img src="./images/Google.png" alt="Google">
+                <img src="./images/Facebook.png" alt="facebook">
+                <img src="./images/Twitch.png" alt="twitch">
+                <img src="./images/Webflow.png" alt="webflow">
+                <img src="./images/YouTube.png" alt="youtube">
             </div>
         </section>
     </main>
