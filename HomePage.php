@@ -21,15 +21,11 @@
         <h2>Welcome to QuickDoc</h2>
         <h2>Selamat bergabung, <?=$_SESSION['nama']?> | <?=$_SESSION['email']?> </h2>
 
-        <?php if($_SESSION['roles']=='pasien'): ?>
-            <p>Halo, <?= $_SESSION['nama']?></p>
-            <a href="service.php">Make an appointment</a>
-            <br />
-        <?php endif; ?>
+        
+        <p>Halo, <?= $_SESSION['nama']?></p>
+        <a href="Service.php">Make an appointment</a>
+        <br />
 
-        <?php if($_SESSION['roles']=='dokter'): ?>
-            <p>Halo dokter <?= $_SESSION['nama']?></p>
-        <?php endif; ?>
 
         <a href="Logout.php">Keluar app</a>
     </div>

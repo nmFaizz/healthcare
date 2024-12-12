@@ -7,10 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registrasi'])) {
     $email = $_POST['email'];
     $umur = $_POST['umur'];
     $jeniskelamin = $_POST['gender'];
-    $roles = $_POST['roles'];
 
-    $sql = "INSERT INTO user (nama, pwd, email, umur, jenis_kelamin, roles) 
-            VALUES ('$username', '$pwd', '$email', '$umur', '$jeniskelamin', '$roles')";
+    $sql = "INSERT INTO user (nama, pwd, email, umur, jenis_kelamin) 
+            VALUES ('$username', '$pwd', '$email', '$umur', '$jeniskelamin')";
 
     $query = mysqli_query($db, $sql);
 

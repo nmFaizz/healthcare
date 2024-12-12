@@ -5,24 +5,46 @@
         $username = $_POST['user'];
         $pwd = md5($_POST['pwd']);
 
-        $sql = "SELECT * FROM user WHERE nama='$username' AND pwd='$pwd' LIMIT 1";
+        $sql_pasien = "SELECT * FROM pasien WHERE nama='$username' AND pwd='$pwd' LIMIT 1";
 
-        $query = mysqli_query($db, $sql) or die("SQL error, $sql");
+        $sql_dokter = "SELECT * FROM dokter WHERE nama='$username' AND pwd='$pwd' LIMIT 1";
 
-        $jmldata=mysqli_num_rows($query);
-        if($jmldata>0){
-            $data = mysqli_fetch_assoc($query);
-            session_start();
+        $query_pasien = mysqli_query($db, $sql_pasien) or die("SQL error, $sql");
 
-            $_SESSION['id']=session_id();
-            $_SESSION['nama']=$data['nama'];
-            $_SESSION['email']=$data['email'];
-            $_SESSION['roles']=$data['roles'];
+        $query_dokter = mysqli_query($db, $sql_dokter) or die("SQL error, $sql");
 
-            header("location:HomePage.php");
+        if($sql_pasien){
+            $jmldata=mysqli_num_rows($query_pasien);
+            if($jmldata>0){
+                $data = mysqli_fetch_assoc($query_pasien);
+                session_start();
 
-        }else{
-            echo "<script> alert('login tidak berhasil, coba lagi!'); window.location.assign('FormLogin.php');</script>";
+                $_SESSION['id']=session_id();
+                $_SESSION['nama']=$data['nama'];
+                $_SESSION['email']=$data['email'];
+                $_SESSION['user_id']=$data['id'];
+
+                header("location:HomePage.php");
+            }
+        }
+
+        if($sql_dokter){
+            $jmldata=mysqli_num_rows($query_dokter);
+            if($jmldata>0){
+                $data = mysqli_fetch_assoc($query_dokter);
+                session_start();
+
+                $_SESSION['id']=session_id();
+                $_SESSION['nama']=$data['nama'];
+                $_SESSION['email']=$data['email'];
+                $_SESSION['dokter_id']=$data['id'];
+
+                header("location:Dashboard.php");
+            }
+        }
+
+        else{
+            echo "<script>alert('username or password is incorrect')</script>";
         }
     }
 ?>
