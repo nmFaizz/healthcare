@@ -495,7 +495,7 @@ mysqli_close($db);
                     <h5 class="fw-bold mb-4" >Support</h5>
                     <li class="d-flex flex-column">
                         <a href="#" >
-                            <img src="./images/Facebook.png" alt="">
+                            <img src="./images/icon-Facebook.png" alt="">
                             Facebook
                         </a>
                         <a href="#" >
@@ -511,7 +511,7 @@ mysqli_close($db);
                             LinkedIn
                         </a>
                         <a href="#" >
-                            <img src="./images/YouTube.png" alt="">
+                            <img src="./images/icon-YouTube.png" alt="">
                             Youtube
                         </a>
                     </li>
