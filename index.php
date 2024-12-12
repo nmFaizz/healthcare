@@ -120,6 +120,16 @@
         background-color: black;
     }
 
+    .navbar-text {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .navbar-text p {
+        margin: 0;
+    }
+
     ul li a:hover {
         color: #007E85 !important;
     }
@@ -166,7 +176,8 @@
                 <span class="navbar-text d-flex flex-row gap-3">
                     <?php if(isset($_SESSION['nama'])): ?>
                         <p>Selamat datang, <?= $_SESSION['nama'] ?></p>
-                        <a href="Logout.php">Logout</a>
+                        <a href="Logout.php" class="button-transparent">Logout</a>
+                        <a href="history.php"><img src="images/history-svgrepo-com.svg" alt="" width="20"></a>
                     <?php else: ?>
                         <a class="button-transparent" href="FormRegistrasi.php">Sign Up</a>
                         <a class="button-green text-light" href="FormLogin.php">Log In</a>

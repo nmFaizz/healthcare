@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['id'])) {
+    echo "<script>alert('You must log in to access this page.');</script>";
+    echo "<script>window.location.href = 'index.php';</script>";
+    exit();
+}
 include('config.php');
 
 
@@ -199,7 +205,11 @@ mysqli_close($db);
                 <div class="navbar-text d-flex gap-3 align-items-center justify-content-center">
                     <?php if(isset($_SESSION['id'])): ?>
                         <p class="mb-0">Selamat datang, <?=$_SESSION['nama']?></p>
+                        <a href="Logout.php" class="button-transparent">Logout</a>
                         <a href="history.php"><img src="images/history-svgrepo-com.svg" alt="" width="20"></a>
+                    <?php else: ?>
+                        <a class="button-transparent" href="FormRegistrasi.php">Sign Up</a>
+                        <a class="button-green text-light" href="FormLogin.php">Log In</a>
                     <?php endif; ?>
                 </div>
             </div>
