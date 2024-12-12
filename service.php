@@ -52,6 +52,10 @@ $doctorsJson = json_encode(array_values($filteredDoctors));
     /* -------------- Nav ----------------- */
     a {
         text-decoration: none;
+        color: white;
+    }
+    #footer a:hover{
+        color: black;
     }
 
     .button-transparent {
@@ -82,6 +86,9 @@ $doctorsJson = json_encode(array_values($filteredDoctors));
     }
     /* -------------- End Nav ----------------- */
 
+    li{
+        list-style: none;
+    }
 
     #service{
         color: white;
@@ -123,6 +130,45 @@ $doctorsJson = json_encode(array_values($filteredDoctors));
     .search-button{
         width: 200px;
     }
+
+    /* ----  Service We Provide ----*/
+
+    #service-list{
+        padding-bottom: 50px;
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+    .card {
+        width: 390px;
+        border: none;
+    }   
+    .card img{
+        height: 220px;
+    }
+
+    /* ---- Customer Review ---- */
+    #customer-review .card{
+        width: 300px;
+    }
+    #customer-review .card .stars{
+        width: 130px;
+        height: 22px;
+    }
+    #customer-review .card .user-profile{
+        width: 50px;
+        height: 50px;
+    }
+
+    /* ---- FAQ ---- */
+    #faq .card{
+        width: 300px;
+        height: 150px;
+    }
+    #faq .arrow{
+        width: 8px;
+        height: 17px;
+    }
+
 </style>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
