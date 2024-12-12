@@ -2,33 +2,33 @@
 include('config.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book_appointment'])) {
-    // Collect POST data
+    
     $user_id = $_POST['user_id'];
     $name = $_POST['name'];
     $email = $_POST['email'];
     $department = $_POST['department'];
     $waktu = $_POST['time'];
 
-    // Validate input fields
+
     if (empty($user_id) || empty($name) || empty($email) || empty($department) || empty($waktu)) {
         die("All fields are required. User ID: $user_id, Name: $name, Email: $email, Department: $department, Time: $waktu");
     }
 
-    // Convert the time to match MySQL's DATETIME format
+  
     $time = str_replace('T', ' ', $waktu);
 
-    // SQL query using placeholders
+  
     $sql = "INSERT INTO appointment (user_id, nama, email, department, waktu) VALUES (?, ?, ?, ?, ?)";
 
-    // Prepare the statement
+  
     $stmt = mysqli_prepare($db, $sql);
     if ($stmt) {
-        // Bind the parameters to the statement
+        
         mysqli_stmt_bind_param($stmt, "issss", $user_id, $name, $email, $department, $time);
 
-        // Execute the prepared statement
+      
         if (mysqli_stmt_execute($stmt)) {
-            // Redirect to a success page
+            
             header("Location: Service.php?success=1");
             exit;
         } else {

@@ -1,34 +1,34 @@
 <?php
+session_start();
 include('config.php');
 
-// Query to fetch all doctors
+
 $query = "SELECT * FROM dokter";
 $result = mysqli_query($db, $query);
 
-// Create an array to store doctor details
+
 $doctors = array();
 if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
-        $doctors[] = $row;  // Store each doctor in the array
+        $doctors[] = $row;  
     }
 }
 
-// Free the result set and close the connection
 mysqli_free_result($result);
 mysqli_close($db);
 
-// Get search parameters from the form (if any)
-$searchName = isset($_GET['name']) ? $_GET['name'] : '';
+$searchName = isset($_GET['nama']) ? $_GET['nama'] : '';
 $searchSpeciality = isset($_GET['speciality']) ? $_GET['speciality'] : '';
 
-// Filter doctors based on the search parameters
+
+
 $filteredDoctors = array_filter($doctors, function($doctor) use ($searchName, $searchSpeciality) {
-    $matchName = stripos($doctor['name'], $searchName) !== false;  
+    $matchName = stripos($doctor['nama'], $searchName) !== false;  
     $matchSpeciality = stripos($doctor['speciality'], $searchSpeciality) !== false; 
     return $matchName && $matchSpeciality;
 });
 
-// Pass the filtered doctors to JavaScript by encoding it to JSON
+
 $doctorsJson = json_encode(array_values($filteredDoctors));
 ?>
 
@@ -217,7 +217,7 @@ $doctorsJson = json_encode(array_values($filteredDoctors));
         <div class="d-flex flex-column flex-lg-row gap-3 mt-4">
             <div class="col-md">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="find-doctor-name" name="name" placeholder="Name" value="<?= htmlspecialchars($searchName) ?>">
+                    <input type="text" class="form-control" id="find-doctor-name" name="nama" placeholder="Name" value="<?= htmlspecialchars($searchName) ?>">
                     <label for="find-doctor-name">Name</label>
                 </div>
             </div>
@@ -237,8 +237,9 @@ $doctorsJson = json_encode(array_values($filteredDoctors));
             <?php if (count($filteredDoctors) > 0): ?>
                 <?php foreach ($filteredDoctors as $doctor): ?>
                     <div class="doctor-item">
-                        <h5><?= htmlspecialchars($doctor['name']) ?></h5>
+                        <h5><?= htmlspecialchars($doctor['nama']) ?></h5>
                         <p>Speciality: <?= htmlspecialchars($doctor['speciality']) ?></p>
+                        <p>Email: <?= htmlspecialchars($doctor['email']) ?></p> <!-- Added this line -->
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
