@@ -286,6 +286,43 @@ mysqli_close($db);
             <div>
                 <button type="submit" id="find-doctor" class="button-green text-white border-0 search-button fw-semibold">Search</button>
             </div>
+            </div>     
+        </div>
+        </form>
+        <div id="doctor-results" class="mt-5">
+            
+        </div>
+    </div>
+
+    <!-------- Services We Provide --------->
+    <section>
+        <div class="container" id="service-list">
+            <h1 style="color: #007E85" class="text-center">Services We Provide</h1>
+            <p class="text-center mb-5">Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar <br> elementum tempus hac tellus libero accumsan. </p>
+            <div class="row gap-4 mb-3 d-flex justify-content-center">
+                <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                    <img src="./images/img1.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Dental treatments</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consecte tur adipiscing elit semper dalaracc lacus vel facilisis volutpat est velitolm.</p>
+                    </div>
+                </div>
+            
+            <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                <img src="./images/img2.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Eye Care</h5>
+                    <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto quibusdam eaque laboriosam modi libero vitae dolorum nobis, dicta suscipit, aliquam vel nihil aut reiciendis eum sit fuga ab. Autem, quam?</p>
+                </div>
+            </div>
+            
+            <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                <img src="./images/img3.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Surgery</h5>
+                    <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio tenetur in soluta hic, consectetur, rem provident harum rerum similique animi obcaecati ducimus fuga reprehenderit laborum porro laudantium. Dolore, quisquam expedita.</p>
+                </div>
+            </div>
             </div>
             
             <div class="row gap-4 d-flex justify-content-center">
@@ -317,12 +354,6 @@ mysqli_close($db);
     </section>
     <!-------- End Services We Provide --------->
 
-        </form>
-
-        <div id="doctor-results" class="mt-5">
-            
-        </div>
-    </div>
 
     <!------- Customer Reviews------->
     <section>
