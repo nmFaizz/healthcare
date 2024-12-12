@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('config.php');
 
 // Query to fetch all doctors
@@ -18,12 +19,12 @@ mysqli_free_result($result);
 mysqli_close($db);
 
 // Get search parameters from the form (if any)
-$searchName = isset($_GET['name']) ? $_GET['name'] : '';
+$searchName = isset($_GET['nama']) ? $_GET['nama'] : '';
 $searchSpeciality = isset($_GET['speciality']) ? $_GET['speciality'] : '';
 
 // Filter doctors based on the search parameters
 $filteredDoctors = array_filter($doctors, function($doctor) use ($searchName, $searchSpeciality) {
-    $matchName = stripos($doctor['name'], $searchName) !== false;  
+    $matchName = stripos($doctor['nama'], $searchName) !== false;  
     $matchSpeciality = stripos($doctor['speciality'], $searchSpeciality) !== false; 
     return $matchName && $matchSpeciality;
 });
@@ -283,7 +284,7 @@ $doctorsJson = json_encode(array_values($filteredDoctors));
             <?php if (count($filteredDoctors) > 0): ?>
                 <?php foreach ($filteredDoctors as $doctor): ?>
                     <div class="doctor-item">
-                        <h5><?= htmlspecialchars($doctor['name']) ?></h5>
+                        <h5><?= htmlspecialchars($doctor['nama']) ?></h5>
                         <p>Speciality: <?= htmlspecialchars($doctor['speciality']) ?></p>
                     </div>
                 <?php endforeach; ?>
@@ -292,6 +293,175 @@ $doctorsJson = json_encode(array_values($filteredDoctors));
             <?php endif; ?>
         </div>
     </div>
+
+    <!------- Customer Reviews------->
+    <section>
+    <div class="container pb-5" id="customer-review">
+        <h1 style="color: #007E85" class="text-center">What Our Customer Say</h1>
+        <p class="text-center mb-5">Problems trying to resolve the conflict between the two major realms of <br> Classical physics: Newtonian mechanics </p>
+        <div class="row gap-5 mb-3 d-flex justify-content-center">
+            <div class="card col-sm-6 col-lg-4 p-4">
+                <img class="stars mb-3" src="./images/stars.png" alt="">
+                <p>Slate helps you see how many 
+                more days you need to work to 
+                reach your financial goal.</p>
+                <img class="user-profile" src="./images/user1.jpg" alt="user">
+            </div>
+            <div class="card col-sm-6 col-lg-4 p-4">
+                <img class="stars mb-3" src="./images/stars.png" alt="">
+                <p>Slate helps you see how many 
+                more days you need to work to 
+                reach your financial goal.</p>
+                <img class="user-profile" src="./images/user2.jpg" alt="user">
+            </div>
+            <div class="card col-sm-6 col-lg-4 p-4">
+                <img class="stars mb-3" src="./images/stars.png" alt="user">
+                <p>Slate helps you see how many 
+                more days you need to work to 
+                reach your financial goal.</p>
+                <img class="user-profile" src="./images/user3.jpg" alt="user">
+            </div>
+        </div>
+        
+    </section>
+    <!------- End Customer Reviews------->
+
+    <!------- FAQ------->         
+    <section>
+        <div class="container mt-5" id="faq">
+            <h1 class="text-center">FAQ</h1>
+            <p class="text-center mb-5">Problems trying to resolve the conflict between the two major realms of <br> Classical physics: Newtonian mechanics </p>
+            <div class="row gap-5 mb-3 d-flex justify-content-center">
+                <div class="card col-sm-6 col-lg-4 p-4 d-flex flex-row ">
+                    <img class="arrow me-3" src="./images/icn arrow-right icn-xs.png" alt="">
+                    <div>
+                        <p class="fw-bold">The Quick Fox Jumps Over The 
+                        Lazy Dog</p>
+                        <p>Things on a very small scale 
+                        behave like nothing </p>  
+                    </div>
+                </div>
+                <div class="card col-sm-6 col-lg-4 p-4 d-flex flex-row">
+                    <img class="arrow me-3" src="./images/icn arrow-right icn-xs.png" alt="">
+                    <div>
+                        <p class="fw-bold">The Quick Fox Jumps Over The 
+                        Lazy Dog</p>
+                        <p>Things on a very small scale 
+                        behave like nothing </p>  
+                    </div>
+                </div>
+                <div class="card col-sm-6 col-lg-4 p-4 d-flex flex-row">
+                    <img class="arrow me-3" src="./images/icn arrow-right icn-xs.png" alt="">
+                    <div>
+                        <p class="fw-bold">The Quick Fox Jumps Over The 
+                        Lazy Dog</p>
+                        <p>Things on a very small scale 
+                        behave like nothing </p>  
+                    </div>
+                </div>
+                <div class="card col-sm-6 col-lg-4 p-4 d-flex flex-row">
+                    <img class="arrow me-3" src="./images/icn arrow-right icn-xs.png" alt="">
+                    <div>
+                        <p class="fw-bold">The Quick Fox Jumps Over The 
+                        Lazy Dog</p>
+                        <p>Things on a very small scale 
+                        behave like nothing </p>  
+                    </div>
+                </div>
+                <div class="card col-sm-6 col-lg-4 p-4 d-flex flex-row">
+                    <img class="arrow me-3" src="./images/icn arrow-right icn-xs.png" alt="">
+                    <div>
+                        <p class="fw-bold">The Quick Fox Jumps Over The 
+                        Lazy Dog</p>
+                        <p>Things on a very small scale 
+                        behave like nothing </p>  
+                    </div>
+                </div>
+                <div class="card col-sm-6 col-lg-4 p-4 d-flex flex-row">
+                    <img class="arrow me-3" src="./images/icn arrow-right icn-xs.png" alt="">
+                    <div>
+                        <p class="fw-bold">The Quick Fox Jumps Over The 
+                        Lazy Dog</p>
+                        <p>Things on a very small scale 
+                        behave like nothing </p>  
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <!------- End FAQ------->
+
+    <!------- Footer -------->
+    <section class="mt-5">
+        <div style="background-color: #007E85;" class="text-white py-4" id="footer">
+            <div class="container p-5 d-flex flex-wrap justify-content-between">
+                <div class="mb-4 me-4">
+                    <a class="navbar-brand" href="#">
+                        <img src="./images/logofooter.png" alt="logo" width="200">
+                    </a>
+                    <p>Copyright © 2022 BRIX Templates <br> | All Rights Reserved </p>
+                </div>
+                <div class="mb-4 me-4">
+                    <h5 class="fw-bold mb-4" >Product</h5>
+                    <li class="d-flex flex-column">
+                        <a href="#" >Features</a>
+                        <a href="#" >Pricing</a>
+                        <a href="#" >Case Studies</a>
+                        <a href="#" >Reviews</a>
+                        <a href="#" >Updates</a>
+                    </li>
+                </div>
+                <div class="mb-4 me-4">
+                    <h5 class="fw-bold mb-4" >Company</h5>
+                    <li class="d-flex flex-column">
+                        <a href="#" >About</a>
+                        <a href="#" >Contact Us</a>
+                        <a href="#" >Careers</a>
+                        <a href="#" >Cultures</a>
+                        <a href="#" >Blog</a>
+                    </li>
+                </div>
+                <div class="mb-4 me-4">
+                    <h5 class="fw-bold mb-4" >Support</h5>
+                    <li class="d-flex flex-column">
+                        <a href="#" >Getting Started</a>
+                        <a href="#" >Help Center</a>
+                        <a href="#" >Server Status</a>
+                        <a href="#" >Report a Bug</a>
+                        <a href="#" >Chat Support</a>
+                    </li>
+                </div>
+                <div class="mb-4 me-4">
+                    <h5 class="fw-bold mb-4" >Support</h5>
+                    <li class="d-flex flex-column">
+                        <a href="#" >
+                            <img src="./images/Facebook.png" alt="">
+                            Facebook
+                        </a>
+                        <a href="#" >
+                            <img src="./images/Twitter.png" alt="">
+                            Twitter
+                        </a>
+                        <a href="#" >
+                            <img src="./images/Instagram.png" alt="">
+                            Instagram
+                        </a>
+                        <a href="#" >
+                            <img src="./images/LinkedIn.png" alt="">
+                            LinkedIn
+                        </a>
+                        <a href="#" >
+                            <img src="./images/YouTube.png" alt="">
+                            Youtube
+                        </a>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!------- End Footer -------->
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
