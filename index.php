@@ -1,5 +1,8 @@
 
-<?php session_start() ?>
+<?php
+ session_start(); 
+
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -160,9 +163,14 @@
                         <a class="nav-link" href="help.php">Help</a>
                     </li>
                 </ul>
-                <span class="navbar-text">
-                    <a class="button-transparent" href="FormRegistrasi.php">Sign Up</a>
-                    <a class="button-green text-light" href="FormLogin.php">Log In</a>
+                <span class="navbar-text d-flex flex-row gap-3">
+                    <?php if(isset($_SESSION['nama'])): ?>
+                        <p>Selamat datang, <?= $_SESSION['nama'] ?></p>
+                        <a href="Logout.php">Logout</a>
+                    <?php else: ?>
+                        <a class="button-transparent" href="FormRegistrasi.php">Sign Up</a>
+                        <a class="button-green text-light" href="FormLogin.php">Log In</a>
+                    <?php endif; ?>
                 </span>
             </div>
         </div>

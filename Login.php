@@ -24,7 +24,7 @@
                 $_SESSION['email']=$data['email'];
                 $_SESSION['user_id']=$data['id'];
 
-                header("location:HomePage.php");
+                header("location:index.php");
             }
         }
 

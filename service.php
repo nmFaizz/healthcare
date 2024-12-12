@@ -183,7 +183,7 @@ $doctorsJson = json_encode(array_values($filteredDoctors));
                 <!-- Center the navbar items -->
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="service.php">Service</a>
@@ -197,7 +197,7 @@ $doctorsJson = json_encode(array_values($filteredDoctors));
                 </ul>
                 <div class="navbar-text d-flex align-items-center justify-content-center">
                     <?php if(isset($_SESSION['id'])): ?>
-                        <p class="mb-0">Halo, <?=$_SESSION['nama']?></p>
+                        <p class="mb-0">Selamat datang, <?=$_SESSION['nama']?></p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -228,7 +228,7 @@ $doctorsJson = json_encode(array_values($filteredDoctors));
         <form action="Appointment.php" method="POST" class="form-appointment d-flex flex-column text-black fw-semibold">
             <h1>Book Appointment</h1>
             <div class="appointment-input d-flex flex-column gap-2">
-                <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+                <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">    
 
                 <label for="name" class="form-label">Name *</label>
                 <input type="text" class="form-control" name="name" id="name" placeholder="Full Name *" required>
@@ -293,6 +293,174 @@ $doctorsJson = json_encode(array_values($filteredDoctors));
             <?php endif; ?>
         </div>
     </div>
+
+    <!------- Customer Reviews------->
+    <section>
+    <div class="container pb-5" id="customer-review">
+        <h1 style="color: #007E85" class="text-center">What Our Customer Say</h1>
+        <p class="text-center mb-5">Problems trying to resolve the conflict between the two major realms of <br> Classical physics: Newtonian mechanics </p>
+        <div class="row gap-5 mb-3 d-flex justify-content-center">
+            <div class="card col-sm-6 col-lg-4 p-4">
+                <img class="stars mb-3" src="./images/stars.png" alt="">
+                <p>Slate helps you see how many 
+                more days you need to work to 
+                reach your financial goal.</p>
+                <img class="user-profile" src="./images/user1.jpg" alt="user">
+            </div>
+            <div class="card col-sm-6 col-lg-4 p-4">
+                <img class="stars mb-3" src="./images/stars.png" alt="">
+                <p>Slate helps you see how many 
+                more days you need to work to 
+                reach your financial goal.</p>
+                <img class="user-profile" src="./images/user2.jpg" alt="user">
+            </div>
+            <div class="card col-sm-6 col-lg-4 p-4">
+                <img class="stars mb-3" src="./images/stars.png" alt="user">
+                <p>Slate helps you see how many 
+                more days you need to work to 
+                reach your financial goal.</p>
+                <img class="user-profile" src="./images/user3.jpg" alt="user">
+            </div>
+        </div>
+        
+    </section>
+    <!------- End Customer Reviews------->
+
+    <!------- FAQ------->         
+    <section>
+        <div class="container mt-5" id="faq">
+            <h1 class="text-center">FAQ</h1>
+            <p class="text-center mb-5">Problems trying to resolve the conflict between the two major realms of <br> Classical physics: Newtonian mechanics </p>
+            <div class="row gap-5 mb-3 d-flex justify-content-center">
+                <div class="card col-sm-6 col-lg-4 p-4 d-flex flex-row ">
+                    <img class="arrow me-3" src="./images/icn arrow-right icn-xs.png" alt="">
+                    <div>
+                        <p class="fw-bold">The Quick Fox Jumps Over The 
+                        Lazy Dog</p>
+                        <p>Things on a very small scale 
+                        behave like nothing </p>  
+                    </div>
+                </div>
+                <div class="card col-sm-6 col-lg-4 p-4 d-flex flex-row">
+                    <img class="arrow me-3" src="./images/icn arrow-right icn-xs.png" alt="">
+                    <div>
+                        <p class="fw-bold">The Quick Fox Jumps Over The 
+                        Lazy Dog</p>
+                        <p>Things on a very small scale 
+                        behave like nothing </p>  
+                    </div>
+                </div>
+                <div class="card col-sm-6 col-lg-4 p-4 d-flex flex-row">
+                    <img class="arrow me-3" src="./images/icn arrow-right icn-xs.png" alt="">
+                    <div>
+                        <p class="fw-bold">The Quick Fox Jumps Over The 
+                        Lazy Dog</p>
+                        <p>Things on a very small scale 
+                        behave like nothing </p>  
+                    </div>
+                </div>
+                <div class="card col-sm-6 col-lg-4 p-4 d-flex flex-row">
+                    <img class="arrow me-3" src="./images/icn arrow-right icn-xs.png" alt="">
+                    <div>
+                        <p class="fw-bold">The Quick Fox Jumps Over The 
+                        Lazy Dog</p>
+                        <p>Things on a very small scale 
+                        behave like nothing </p>  
+                    </div>
+                </div>
+                <div class="card col-sm-6 col-lg-4 p-4 d-flex flex-row">
+                    <img class="arrow me-3" src="./images/icn arrow-right icn-xs.png" alt="">
+                    <div>
+                        <p class="fw-bold">The Quick Fox Jumps Over The 
+                        Lazy Dog</p>
+                        <p>Things on a very small scale 
+                        behave like nothing </p>  
+                    </div>
+                </div>
+                <div class="card col-sm-6 col-lg-4 p-4 d-flex flex-row">
+                    <img class="arrow me-3" src="./images/icn arrow-right icn-xs.png" alt="">
+                    <div>
+                        <p class="fw-bold">The Quick Fox Jumps Over The 
+                        Lazy Dog</p>
+                        <p>Things on a very small scale 
+                        behave like nothing </p>  
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <!------- End FAQ------->
+
+    <!------- Footer -------->
+    <section class="mt-5">
+        <div style="background-color: #007E85;" class="text-white py-4" id="footer">
+            <div class="container p-5 d-flex flex-wrap justify-content-between">
+                <div class="mb-4 me-4">
+                    <a class="navbar-brand" href="#">
+                        <img src="./images/logofooter.png" alt="logo" width="200">
+                    </a>
+                    <p>Copyright © 2022 BRIX Templates <br> | All Rights Reserved </p>
+                </div>
+                <div class="mb-4 me-4">
+                    <h5 class="fw-bold mb-4" >Product</h5>
+                    <li class="d-flex flex-column">
+                        <a href="#" >Features</a>
+                        <a href="#" >Pricing</a>
+                        <a href="#" >Case Studies</a>
+                        <a href="#" >Reviews</a>
+                        <a href="#" >Updates</a>
+                    </li>
+                </div>
+                <div class="mb-4 me-4">
+                    <h5 class="fw-bold mb-4" >Company</h5>
+                    <li class="d-flex flex-column">
+                        <a href="#" >About</a>
+                        <a href="#" >Contact Us</a>
+                        <a href="#" >Careers</a>
+                        <a href="#" >Cultures</a>
+                        <a href="#" >Blog</a>
+                    </li>
+                </div>
+                <div class="mb-4 me-4">
+                    <h5 class="fw-bold mb-4" >Support</h5>
+                    <li class="d-flex flex-column">
+                        <a href="#" >Getting Started</a>
+                        <a href="#" >Help Center</a>
+                        <a href="#" >Server Status</a>
+                        <a href="#" >Report a Bug</a>
+                        <a href="#" >Chat Support</a>
+                    </li>
+                </div>
+                <div class="mb-4 me-4">
+                    <h5 class="fw-bold mb-4" >Support</h5>
+                    <li class="d-flex flex-column">
+                        <a href="#" >
+                            <img src="./images/Facebook.png" alt="">
+                            Facebook
+                        </a>
+                        <a href="#" >
+                            <img src="./images/Twitter.png" alt="">
+                            Twitter
+                        </a>
+                        <a href="#" >
+                            <img src="./images/Instagram.png" alt="">
+                            Instagram
+                        </a>
+                        <a href="#" >
+                            <img src="./images/LinkedIn.png" alt="">
+                            LinkedIn
+                        </a>
+                        <a href="#" >
+                            <img src="./images/YouTube.png" alt="">
+                            Youtube
+                        </a>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!------- End Footer -------->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 

@@ -3,7 +3,7 @@
     if(isset($_SESSION['id'])){
         session_destroy();
 
-        header("location:FormLogin.php");
+        header("location:index.php");
     }else{
         header("Location:FormLogin.php");
     }
