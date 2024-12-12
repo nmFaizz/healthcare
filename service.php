@@ -14,22 +14,14 @@ if ($result) {
     }
 }
 
+$doctors_json = json_encode($doctors);
+echo "<script>console.log(" . $doctors_json . ");</script>";
+echo "<script>const doctorsData = " . $doctors_json . ";</script>";
+
+
 mysqli_free_result($result);
 mysqli_close($db);
 
-$searchName = isset($_GET['nama']) ? $_GET['nama'] : '';
-$searchSpeciality = isset($_GET['speciality']) ? $_GET['speciality'] : '';
-
-
-
-$filteredDoctors = array_filter($doctors, function($doctor) use ($searchName, $searchSpeciality) {
-    $matchName = stripos($doctor['nama'], $searchName) !== false;  
-    $matchSpeciality = stripos($doctor['speciality'], $searchSpeciality) !== false; 
-    return $matchName && $matchSpeciality;
-});
-
-
-$doctorsJson = json_encode(array_values($filteredDoctors));
 ?>
 
 
@@ -169,6 +161,15 @@ $doctorsJson = json_encode(array_values($filteredDoctors));
         height: 17px;
     }
 
+    .doctor-result {
+      margin-top: 20px;
+    }
+    .doctor-card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 5px;
+    }
+
 </style>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -189,15 +190,16 @@ $doctorsJson = json_encode(array_values($filteredDoctors));
                         <a class="nav-link" href="service.php">Service</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.php">Contact Us</a>
+                        <a class="nav-link" href="ComingSoon.php">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="help.php">Help</a>
+                        <a class="nav-link" href="ComingSoon.php">Help</a>
                     </li>
                 </ul>
-                <div class="navbar-text d-flex align-items-center justify-content-center">
+                <div class="navbar-text d-flex gap-3 align-items-center justify-content-center">
                     <?php if(isset($_SESSION['id'])): ?>
                         <p class="mb-0">Selamat datang, <?=$_SESSION['nama']?></p>
+                        <a href="history.php"><img src="images/history-svgrepo-com.svg" alt="" width="20"></a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -260,37 +262,26 @@ $doctorsJson = json_encode(array_values($filteredDoctors));
     <!-- Form to input search criteria -->
     <div class="container my-5 find-doctor bg-white rounded-4 p-5">
         <h1>Find A Doctor</h1>
-        <div class="d-flex flex-column flex-lg-row gap-3 mt-4">
+        <form id="doctor-form" class="d-flex flex-column flex-lg-row gap-3 mt-4">
             <div class="col-md">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="find-doctor-name" name="nama" placeholder="Name" value="<?= htmlspecialchars($searchName) ?>">
+                    <input type="text" class="form-control" id="find-doctor-name" name="nama" placeholder="Name">
                     <label for="find-doctor-name">Name</label>
                 </div>
             </div>
             <div class="col-md">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="find-doctor-speciality" name="speciality" placeholder="Speciality" value="<?= htmlspecialchars($searchSpeciality) ?>">
+                    <input type="text" class="form-control" id="find-doctor-speciality" name="speciality" placeholder="Speciality">
                     <label for="find-doctor-speciality">Speciality</label>
                 </div>
             </div>
-            <form action="service.php" method="GET">
-                <button type="submit" class="button-green text-white border-0 search-button fw-semibold">Search</button>
-            </form>
-        </div>
+            <div>
+                <button type="submit" id="find-doctor" class="button-green text-white border-0 search-button fw-semibold">Search</button>
+            </div>
+        </form>
 
         <div id="doctor-results" class="mt-5">
-            <!-- Doctors will be displayed here -->
-            <?php if (count($filteredDoctors) > 0): ?>
-                <?php foreach ($filteredDoctors as $doctor): ?>
-                    <div class="doctor-item">
-                        <h5><?= htmlspecialchars($doctor['nama']) ?></h5>
-                        <p>Speciality: <?= htmlspecialchars($doctor['speciality']) ?></p>
-                        <p>Email: <?= htmlspecialchars($doctor['email']) ?></p> <!-- Added this line -->
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p>No doctors found.</p>
-            <?php endif; ?>
+            
         </div>
     </div>
 
@@ -463,6 +454,47 @@ $doctorsJson = json_encode(array_values($filteredDoctors));
     <!------- End Footer -------->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+   
+    console.log(doctorsData); 
+
+    
+    doctorsData.forEach(doctor => {
+        console.log(`Nama Dokter: ${doctor.nama}, Spesialisasi: ${doctor.speciality}`);
+    });
+
+
+
+    document.getElementById("doctor-form").addEventListener("submit", function (e) {
+    e.preventDefault(); // Prevent form submission
+    const nameInput = document.getElementById("find-doctor-name").value.toLowerCase();
+    const specialityInput = document.getElementById("find-doctor-speciality").value.toLowerCase();
+    const resultsContainer = document.getElementById("doctor-results");
+    resultsContainer.innerHTML = ""; // Clear previous results
+
+    const filteredDoctors = doctorsData.filter(doctor => {
+        const nameMatch = nameInput ? doctor.nama.toLowerCase().includes(nameInput) : true;
+        const specialityMatch = specialityInput ? doctor.speciality.toLowerCase().includes(specialityInput) : true;
+        return nameMatch && specialityMatch;
+    });
+
+    if (filteredDoctors.length) {
+        filteredDoctors.forEach(doctor => {
+            const card = `
+                <div class="doctor-card">
+                    <h5>${doctor.nama}</h5>
+                    <p>Speciality: ${doctor.speciality}</p>
+                    <p>Email: ${doctor.email}</p>
+                </div>
+            `;
+            resultsContainer.innerHTML += card;
+        });
+    } else {
+        resultsContainer.innerHTML = "<p>No doctors found.</p>";
+    }
+});
+
+</script>
 
 </body>
 </html>

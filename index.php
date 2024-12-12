@@ -157,10 +157,10 @@
                         <a class="nav-link" href="service.php">Service</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.php">Contact Us</a>
+                        <a class="nav-link" href="ComingSoon.php">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="help.php">Help</a>
+                        <a class="nav-link" href="ComingSoon.php">Help</a>
                     </li>
                 </ul>
                 <span class="navbar-text d-flex flex-row gap-3">
