@@ -21,12 +21,23 @@
         background-color: #007E85;
         padding: 10px 20px;
         border-radius: 5px;
-        color: white;
-        border: none;
     }
 
     .button-green:hover {
         background-color: #005C63;
+    }
+
+    .button-transparent {
+        background-color: transparent;
+        color: wheat;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    .button-transparent:hover {
+        background-color: whitesmoke;
+        color: #007E85;
     }
 
     .form-login {
@@ -35,12 +46,21 @@
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
+
     label.form-label {
-    margin-bottom: 2px; /* Mengatur jarak bawah label */
+        display: block;
+        margin-bottom: 5px; /* Jarak antara label dan input */
+        font-weight: 600;
+        font-size: 1rem;
     }
 
-    p.form-control-plaintext {
-        margin-top: 0; /* Menghapus jarak atas pada elemen p */
+    input.form-control-plaintext {
+        display: block;
+        margin-bottom: 15px; /* Jarak antar input */
+        padding: 5px 0; /* Tambahkan sedikit padding untuk input */
+        font-size: 1rem;
+        border: none;
+        background: transparent;
     }
 </style>
 <body class="bg-body-tertiary">
@@ -78,20 +98,21 @@
     <h1 class="text-center mb-4">Appointment History</h1>
     <div class="container d-flex justify-content-center align-items-center mt-5">
         <div class="form-login col-md-4">
-            <div>
-                <label class="form-label fw-semibold fs-5">Name:</label>
-                <p id="name" class="form-control-plaintext">KING & GOD</p>
+            <form>
+                <label class="form-label" for="name">Name:</label>
+                <input type="text" id="name" class="form-control-plaintext" value="KING & GOD" readonly>
 
-                <label class="form-label fw-semibold fs-5">Email Address:</label>
-                <p id="email" class="form-control-plaintext">rusdiansyah@example.com</p>
+                <label class="form-label" for="email">Email Address:</label>
+                <input type="text" id="email" class="form-control-plaintext" value="rusdiansyah@example.com" readonly>
 
-                <label class="form-label fw-semibold fs-5">Department:</label>
-                <p id="department" class="form-control-plaintext">Muani</p>
+                <label class="form-label" for="department">Department:</label>
+                <input type="text" id="department" class="form-control-plaintext" value="Muani" readonly>
 
-                <label class="form-label fw-semibold fs-5">Time:</label>
-                <p id="time" class="form-control-plaintext">4:00 PM</p>
-            </div>
+                <label class="form-label" for="time">Time:</label>
+                <input type="text" id="time" class="form-control-plaintext" value="4:00 PM" readonly>
+            </form>
             <button class="button-green text-light text-center border-0 mt-3">Edit Appointment</button>
+            <button class="button-green text-light text-center border-0 mt-3 ms-3">Delete Appointment</button>
         </div>
     </div>
 
