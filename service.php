@@ -356,30 +356,31 @@ $doctorsJson = json_encode(array_values($filteredDoctors));
 
     <!------- Customer Reviews------->
     <section>
-    <div class="container pb-5" id="customer-review">
-        <h1 style="color: #007E85" class="text-center">What Our Customer Say</h1>
-        <p class="text-center mb-5">Problems trying to resolve the conflict between the two major realms of <br> Classical physics: Newtonian mechanics </p>
-        <div class="row gap-5 mb-3 d-flex justify-content-center">
-            <div class="card col-sm-6 col-lg-4 p-4">
-                <img class="stars mb-3" src="./images/stars.png" alt="">
-                <p>Slate helps you see how many 
-                more days you need to work to 
-                reach your financial goal.</p>
-                <img class="user-profile" src="./images/user1.jpg" alt="user">
-            </div>
-            <div class="card col-sm-6 col-lg-4 p-4">
-                <img class="stars mb-3" src="./images/stars.png" alt="">
-                <p>Slate helps you see how many 
-                more days you need to work to 
-                reach your financial goal.</p>
-                <img class="user-profile" src="./images/user2.jpg" alt="user">
-            </div>
-            <div class="card col-sm-6 col-lg-4 p-4">
-                <img class="stars mb-3" src="./images/stars.png" alt="user">
-                <p>Slate helps you see how many 
-                more days you need to work to 
-                reach your financial goal.</p>
-                <img class="user-profile" src="./images/user3.jpg" alt="user">
+        <div class="container pb-5" id="customer-review">
+            <h1 style="color: #007E85" class="text-center">What Our Customer Say</h1>
+            <p class="text-center mb-5">Problems trying to resolve the conflict between the two major realms of <br> Classical physics: Newtonian mechanics </p>
+            <div class="row gap-5 mb-3 d-flex justify-content-center">
+                <div class="card col-sm-6 col-lg-4 p-4">
+                    <img class="stars mb-3" src="./images/stars.png" alt="">
+                    <p>Slate helps you see how many 
+                    more days you need to work to 
+                    reach your financial goal.</p>
+                    <img class="user-profile" src="./images/user1.jpg" alt="user">
+                </div>
+                <div class="card col-sm-6 col-lg-4 p-4">
+                    <img class="stars mb-3" src="./images/stars.png" alt="">
+                    <p>Slate helps you see how many 
+                    more days you need to work to 
+                    reach your financial goal.</p>
+                    <img class="user-profile" src="./images/user2.jpg" alt="user">
+                </div>
+                <div class="card col-sm-6 col-lg-4 p-4">
+                    <img class="stars mb-3" src="./images/stars.png" alt="user">
+                    <p>Slate helps you see how many 
+                    more days you need to work to 
+                    reach your financial goal.</p>
+                    <img class="user-profile" src="./images/user3.jpg" alt="user">
+                </div>
             </div>
         </div>
         
