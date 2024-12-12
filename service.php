@@ -465,10 +465,6 @@ mysqli_close($db);
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-   
-    console.log(doctorsData); 
-
-    
     doctorsData.forEach(doctor => {
         console.log(`Nama Dokter: ${doctor.nama}, Spesialisasi: ${doctor.speciality}`);
     });

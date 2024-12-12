@@ -1,8 +1,30 @@
 
 <?php
- session_start(); 
+session_start();
 
- ?>
+include('config.php');
+
+
+$query = "SELECT * FROM dokter";
+$result = mysqli_query($db, $query);
+
+
+$doctors = array();
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $doctors[] = $row;  
+    }
+}
+
+$doctors_json = json_encode($doctors);
+echo "<script>console.log(" . $doctors_json . ");</script>";
+echo "<script>const doctorsData = " . $doctors_json . ";</script>";
+
+
+mysqli_free_result($result);
+mysqli_close($db);
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +60,13 @@
         background-color: #007E85 !important;
     }
 
+    .form-appointment{
+        background-color: white;
+        padding: 30px 40px;
+        border-radius: 10px;
+        gap: 30px;
+    }
+    
     .button-transparent {
         background-color: transparent;
         color: #005C63 !important;
@@ -203,14 +232,30 @@
             </div>
         </section>
 
-        <section id="appointment" class="container-md rounded p-4 bg-white">
-            <h4 class="mb-4">Find A Doctor</h4>
-            <div class="d-flex flex-column flex-md-row gap-4">
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name">
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Speciality">
-                <a href="#" class="button-green">SEARCH</a>
+        <div class="container-md my-5 find-doctor bg-white rounded-4 p-5">
+            <h1>Find A Doctor</h1>
+            <form id="doctor-form" class="d-flex flex-column flex-lg-row gap-3 mt-4">
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="find-doctor-name" name="nama" placeholder="Name">
+                        <label for="find-doctor-name">Name</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="find-doctor-speciality" name="speciality" placeholder="Speciality">
+                        <label for="find-doctor-speciality">Speciality</label>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" id="find-doctor" class="button-green text-white border-0 search-button fw-semibold">Search</button>
+                </div>
+            </form>
+
+            <div id="doctor-results" class="mt-5">
+                
             </div>
-        </section>
+        </div>
 
         <section id="stat" class="container-md mt-7">
             <h1 class="text-center text-green">Our Results In Numbers</h1>
@@ -518,5 +563,41 @@
         </section>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        doctorsData.forEach(doctor => {
+            console.log(`Nama Dokter: ${doctor.nama}, Spesialisasi: ${doctor.speciality}`);
+        });
+
+
+
+        document.getElementById("doctor-form").addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent form submission
+        const nameInput = document.getElementById("find-doctor-name").value.toLowerCase();
+        const specialityInput = document.getElementById("find-doctor-speciality").value.toLowerCase();
+        const resultsContainer = document.getElementById("doctor-results");
+        resultsContainer.innerHTML = ""; // Clear previous results
+
+        const filteredDoctors = doctorsData.filter(doctor => {
+            const nameMatch = nameInput ? doctor.nama.toLowerCase().includes(nameInput) : true;
+            const specialityMatch = specialityInput ? doctor.speciality.toLowerCase().includes(specialityInput) : true;
+            return nameMatch && specialityMatch;
+        });
+
+        if (filteredDoctors.length) {
+            filteredDoctors.forEach(doctor => {
+                const card = `
+                    <div class="doctor-card">
+                        <h5>${doctor.nama}</h5>
+                        <p>Speciality: ${doctor.speciality}</p>
+                        <p>Email: ${doctor.email}</p>
+                    </div>
+                `;
+                resultsContainer.innerHTML += card;
+            });
+        } else {
+            resultsContainer.innerHTML = "<p>No doctors found.</p>";
+        }
+    });
+    </script>
 </body>
 </html>
