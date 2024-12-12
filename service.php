@@ -286,9 +286,8 @@ mysqli_close($db);
             <div>
                 <button type="submit" id="find-doctor" class="button-green text-white border-0 search-button fw-semibold">Search</button>
             </div>
-            </div>     
-        </div>
         </form>
+
         <div id="doctor-results" class="mt-5">
             
         </div>
