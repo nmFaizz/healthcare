@@ -1,6 +1,36 @@
+<?php
+include('config.php');
 
+// Query to fetch all doctors
+$query = "SELECT * FROM dokter";
+$result = mysqli_query($db, $query);
 
-<?php session_start() ?>
+// Create an array to store doctor details
+$doctors = array();
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $doctors[] = $row;  // Store each doctor in the array
+    }
+}
+
+// Free the result set and close the connection
+mysqli_free_result($result);
+mysqli_close($db);
+
+// Get search parameters from the form (if any)
+$searchName = isset($_GET['name']) ? $_GET['name'] : '';
+$searchSpeciality = isset($_GET['speciality']) ? $_GET['speciality'] : '';
+
+// Filter doctors based on the search parameters
+$filteredDoctors = array_filter($doctors, function($doctor) use ($searchName, $searchSpeciality) {
+    $matchName = stripos($doctor['name'], $searchName) !== false;  
+    $matchSpeciality = stripos($doctor['speciality'], $searchSpeciality) !== false; 
+    return $matchName && $matchSpeciality;
+});
+
+// Pass the filtered doctors to JavaScript by encoding it to JSON
+$doctorsJson = json_encode(array_values($filteredDoctors));
+?>
 
 
 <!DOCTYPE html>
@@ -119,14 +149,15 @@
                         <a class="nav-link" href="help.php">Help</a>
                     </li>
                 </ul>
-                <?php if(isset($_SESSION['id'])): ?>
-                    <span class="navbar-text">
-                        <p>Halo, <?=$_SESSION['nama']?> </p>
-                    </span>
-                <?php endif; ?>
+                <div class="navbar-text d-flex align-items-center justify-content-center">
+                    <?php if(isset($_SESSION['id'])): ?>
+                        <p class="mb-0">Halo, <?=$_SESSION['nama']?></p>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </nav>
+
     
     <div class="container-fluid py-5 d-flex flex-column flex-lg-row justify-content-center bg-hero" id="service">
         <div class="p-5 lc-block col-xxl-7 col-lg-8 col-12 jumbotron-content">
@@ -148,55 +179,75 @@
                 <a class="button-transparent text-light text-center rounded-pill fw-semibold border-green" href="#">Learn More</a>
             </div>
         </div>
-        <div class="form-appointment d-flex flex-column text-black fw-semibold">
+        <form action="Appointment.php" method="POST" class="form-appointment d-flex flex-column text-black fw-semibold">
             <h1>Book Appointment</h1>
             <div class="appointment-input d-flex flex-column gap-2">
+                <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+
                 <label for="name" class="form-label">Name *</label>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Full Name *">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Full Name *" required>
+                
                 <label for="email" class="form-label">Email Address *</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="example@gmail.com">
+                <input type="email" class="form-control" name="email" id="email" placeholder="example@gmail.com" required>
+                
                 <label for="department" class="form-label">Department *</label>
-                <select class="form-select form-select-sm" aria-label="Small select example" name="department" id="department">
-                    <option selected>Please Select</option>
+                <select class="form-select form-select-sm" name="department" id="department" required>
+                    <option value="" selected disabled>Please Select</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                 </select>
-                <label for="time" class="form-label" id="time">Time *</label>
-                <select class="form-select form-select-sm" aria-label="Small select example" name="time" id="time">
-                    <option selected>4:00 Available</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+                
+                <label for="time" class="form-label">Time *</label>
+                <input type="datetime-local" class="form-control" name="time" id="time" required>
             </div>
-            <button class="button-green text-light text-center border-0" href="#">Book Appointment</button>
-        </div>
+            <button type="submit" name="book_appointment" class="button-green text-light text-center border-0">Book Appointment</button>
+            <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+                <p class="text-success">Appointment successfully made!</p>
+            <?php endif; ?>
+        </form>
+
     </div>
 
+    
+                
+    <!-- Form to input search criteria -->
     <div class="container my-5 find-doctor bg-white rounded-4 p-5">
         <h1>Find A Doctor</h1>
         <div class="d-flex flex-column flex-lg-row gap-3 mt-4">
             <div class="col-md">
                 <div class="form-floating">
-                    <input type="text" class="form-control border-green" id="find-doctor-name" placeholder="Name">
-                    <label for="floatingInputGrid">Name</label>
+                    <input type="text" class="form-control" id="find-doctor-name" name="name" placeholder="Name" value="<?= htmlspecialchars($searchName) ?>">
+                    <label for="find-doctor-name">Name</label>
                 </div>
             </div>
             <div class="col-md">
                 <div class="form-floating">
-                    <input type="text" class="form-control border-green" id="find-doctor-speciality" placeholder="Speciality">
-                    <label for="floatingInputGrid">Speciality</label>
+                    <input type="text" class="form-control" id="find-doctor-speciality" name="speciality" placeholder="Speciality" value="<?= htmlspecialchars($searchSpeciality) ?>">
+                    <label for="find-doctor-speciality">Speciality</label>
                 </div>
             </div>
-            <button class="button-green text-white border-0 search-button fw-semibold">Search</button>
+            <form action="service.php" method="GET">
+                <button type="submit" class="button-green text-white border-0 search-button fw-semibold">Search</button>
+            </form>
+        </div>
+
+        <div id="doctor-results" class="mt-5">
+            <!-- Doctors will be displayed here -->
+            <?php if (count($filteredDoctors) > 0): ?>
+                <?php foreach ($filteredDoctors as $doctor): ?>
+                    <div class="doctor-item">
+                        <h5><?= htmlspecialchars($doctor['name']) ?></h5>
+                        <p>Speciality: <?= htmlspecialchars($doctor['speciality']) ?></p>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No doctors found.</p>
+            <?php endif; ?>
         </div>
     </div>
 
-    <div>CoIJDSOIFJDSOIFJ</div>
-    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
