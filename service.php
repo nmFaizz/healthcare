@@ -295,6 +295,64 @@ mysqli_close($db);
         </div>
     </div>
 
+    <section>
+        <div class="container" id="service-list">
+            <h1 style="color: #007E85" class="text-center">Services We Provide</h1>
+            <p class="text-center mb-5">Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar <br> elementum tempus hac tellus libero accumsan. </p>
+            <div class="row gap-4 mb-3 d-flex justify-content-center">
+                <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                    <img src="./images/img1.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Dental treatments</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consecte tur adipiscing elit semper dalaracc lacus vel facilisis volutpat est velitolm.</p>
+                    </div>
+                </div>
+            
+            <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                <img src="./images/img2.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Eye Care</h5>
+                    <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto quibusdam eaque laboriosam modi libero vitae dolorum nobis, dicta suscipit, aliquam vel nihil aut reiciendis eum sit fuga ab. Autem, quam?</p>
+                </div>
+            </div>
+            
+            <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                <img src="./images/img3.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Surgery</h5>
+                    <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio tenetur in soluta hic, consectetur, rem provident harum rerum similique animi obcaecati ducimus fuga reprehenderit laborum porro laudantium. Dolore, quisquam expedita.</p>
+                </div>
+            </div>
+            </div>
+            
+            <div class="row gap-4 d-flex justify-content-center">
+            <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                <img src="./images/img4.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Cardiology</h5>
+                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae ad illo cupiditate sequi dolore incidunt exercitationem aliquam, provident animi deleniti saepe? Error culpa cumque natus minus enim inventore iusto numquam.</p>
+                </div>
+            </div>
+            
+            <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                <img src="./images/img5.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Diagnosis</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. A perspiciatis doloremque rerum quae perferendis! Unde recusandae voluptate quis quibusdam corrupti blanditiis, beatae fuga consectetur sed eius id natus commodi rem!</p>
+                </div>
+            </div>
+            
+            <div class="card col-sm-6 col-lg-4 pt-3 rounded-4">
+                <img src="./images/img6.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Bones treatments</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eos soluta quasi voluptatibus incidunt quisquam temporibus quaerat nihil reprehenderit quo at facere consequatur, repellendus eligendi quis cumque velit est eveniet.</p>
+                </div>
+            </div>
+            </div>        
+        </div>
+    </section>
+
     <!------- Customer Reviews------->
     <section>
     <div class="container pb-5" id="customer-review">
