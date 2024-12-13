@@ -224,7 +224,7 @@ mysqli_close($db);
                 <p>At our hospital, we are dedicated to providing exceptional medical care to our patients and their families. Our experienced team of medical professionals, cutting-edge technology, and compassionate approach make us a leader in the healthcare industry</p>
 
                 <div class="mt-5">
-                    <a href="#" class="button-green">Appointments</a>
+                    <a href="#" class="button-green">Explore</a>
                 </div>
             </div>
             <div class="flex-fill">
@@ -486,7 +486,7 @@ mysqli_close($db);
             <h1 class="text-green text-center">Trusted by 10,000+ companies around the world</h1>
 
             <div class="d-flex flex-wrap gap-5 justify-content-center mt-5">
-                <img src="./images/google1.png" alt="Google">
+                <img src="./images/google2.png" alt="Google">
                 <img src="./images/facebook1.png" alt="facebook">
                 <img src="./images/Twitch.png" alt="twitch">
                 <img src="./images/Webflow.png" alt="webflow">
