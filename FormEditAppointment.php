@@ -64,7 +64,7 @@
     </style>
 </head>
 <body>
-    <form action="" method="POST" class="form-appointment d-flex flex-column text-black fw-semibold">
+    <form action="Appointment.php" method="POST" class="form-appointment d-flex flex-column text-black fw-semibold">
         <h1>Edit Appointment</h1>
         <div class="appointment-input d-flex flex-column gap-3">
             <input type="hidden" name="id" value="<?= htmlspecialchars($data['id'] ?? '') ?>">
@@ -86,7 +86,7 @@
             <label for="waktu" class="form-label">Time *</label>
             <input type="datetime-local" class="form-control" name="waktu" id="waktu" value="<?= htmlspecialchars($data['waktu'] ?? '') ?>" required>
         </div>
-        <button type="submit" class="button-green text-light text-center border-0 mt-3">Save Changes</button>
+        <button type="submit" name="edit_appointment" class="button-green text-light text-center border-0 mt-3">Save Changes</button>
     </form>
     <a class="text-danger text-decoration-none" href="history.php">cancel</a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

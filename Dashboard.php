@@ -1,21 +1,22 @@
 <?php 
+    include('config.php');
     session_start();
     if(!isset($_SESSION['id'])){
         header("location:FormLogin.php");
     }
-?>
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello, dokter <?=$_SESSION['nama']?></h1>
-</body>
-</html> -->
+    $query = "SELECT COUNT(DISTINCT nama) AS distinct_nama FROM pasien";
+
+    $sql = mysqli_query($db, $query);
+
+    if ($sql) {
+        $row = mysqli_fetch_assoc($sql);
+        $result = $row['distinct_nama']; 
+    } else {
+        $result = "Error: " . mysqli_error($db); 
+    }
+    
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -108,7 +109,7 @@
         </div>
         <section class="d-flex flex-column flex-md-row gap-4 mt-3">
             <div class="stat-card d-flex flex-column justify-content-center align-items-center flex-fill bg-white">
-                <h1>71</h1>
+                <h1><?= $result ?></h1>
                 <p>Unapproved</p>
             </div>
             <div class="stat-card d-flex flex-column justify-content-center align-items-center flex-fill bg-white">

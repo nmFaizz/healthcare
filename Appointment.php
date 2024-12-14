@@ -52,4 +52,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book_appointment'])) {
     }
 }
 
+if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['edit_appointment'])){
+    $id = $_POST['id'];
+    $nama = $_POST['nama'];
+    $email = $_POST['email'];
+    $department = $_POST['department'];
+    $waktu = $_POST['waktu'];
+
+
+}
+
 ?>
