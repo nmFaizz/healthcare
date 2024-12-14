@@ -1,17 +1,15 @@
 <?php 
+    include('config.php');
     session_start();
     if(!isset($_SESSION['id'])){
         header("location:FormLogin.php");
     }
-    if($_SESSION['role']=='pasien'){
-        header("location:index.php");
-    }
-?>
+    $dokter_id = $_SESSION['dokter_id'];
+// Step 1: Connect to MySQL database
+include('config.php');  // assuming this file contains your DB connection details
 
-<?php
-include('config.php'); 
-
-$sql = "SELECT COUNT(*) AS total_rows FROM appointment";  
+// Step 2: Write the SQL query to get the number of rows in the table
+$sql = "SELECT COUNT(*) AS total_rows FROM appointment WHERE dokter_id=$dokter_id";  // replace 'your_table_name' with your actual table name
 
 $result = mysqli_query($db, $sql);  
 
@@ -21,25 +19,52 @@ if ($result) {
     $row = mysqli_fetch_assoc($result);  
     $total_rows = $row['total_rows'];  
 
-    echo "Total rows in the table: " . $total_rows;
 } else {
     echo "Error: " . mysqli_error($db);
 }
 
+$sql_unapprove = "SELECT COUNT(*) AS unapproved_rows 
+                  FROM appointment 
+                  WHERE dokter_id = $dokter_id AND approve = 0";
+
+$result_unapprove = mysqli_query($db, $sql_unapprove);
+
+$unapproved_rows = 0; // Default to 0 in case of an error
+if ($result_unapprove) {
+    $row_unapprove = mysqli_fetch_assoc($result_unapprove);
+    $unapproved_rows = $row_unapprove['unapproved_rows'];
+} else {
+    echo "Error fetching unapproved rows: " . mysqli_error($db);
+}
+
+$sql_approve = "SELECT COUNT(*) AS unapproved_rows 
+                  FROM appointment 
+                  WHERE dokter_id = $dokter_id AND approve = 1";
+
+$result_approve = mysqli_query($db, $sql_approve);
+
+$approved_rows = 0; // Default to 0 in case of an error
+if ($result_approve) {
+    $row_approve = mysqli_fetch_assoc($result_approve);
+    $approved_rows = $row_approve['unapproved_rows'];
+} else {
+    echo "Error fetching unapproved rows: " . mysqli_error($db);
+}
+
+
+$sql_appointments_approve = "SELECT * FROM appointment WHERE dokter_id = $dokter_id AND approve = 0 ORDER BY waktu ASC";
+$result_appointments_approve = mysqli_query($db, $sql_appointments_approve);
+
+if (!$result_appointments_approve) {
+    die("Error fetching appointments: " . mysqli_error($db));
+}
+
+
+// Close the database connection
 mysqli_close($db);
 ?>
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello, dokter <?=$_SESSION['nama']?></h1>
-</body>
-</html> -->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -136,41 +161,42 @@ mysqli_close($db);
                 <p>Appointment</p>
             </div>
             <div class="stat-card d-flex flex-column justify-content-center align-items-center flex-fill bg-white">
-                <h1>150</h1>
-                <p>Appointments</p>
+                <h1><?= $unapproved_rows ?></h1>
+                <p>Unapproved</p>
             </div>
             <div class="stat-card d-flex flex-column justify-content-center align-items-center flex-fill bg-white">
-                <h1>540</h1>
-                <p>Done</p>
+                <h1><?= $approved_rows ?></h1>
+                <p>Approved</p>
             </div>
         </section>
         
         <section class="d-flex flex-md-row flex-column gap-4">
             <div id="appointment-list" class="mt-5 flex-fill rounded">
-                <h5>Appointment List</h5>
-                <div class="mt-4 bg-white p-3 rounded">
-                    <div class="d-flex gap-3 align-items-center">
-                        <p class="fw-semibold">Nur Muhammad Faiz</p>
-                        <p class="unapproved-date">17 December 2024 - 15 PM</p>
-                    </div>
-                    <p>Keluhan kehidupan sebenarnya</p>
-                    <div class="mt-4">
-                        <a href="#" class="button-green">Approve</a>
-                        <a href="#" class="button-transparent">Delete</a>
-                    </div>
-                </div>
-                <div class="mt-4 bg-white p-3 rounded">
-                    <div class="d-flex gap-3 align-items-center">
-                        <p class="fw-semibold">Nur Muhammad Faiz</p>
-                        <p class="unapproved-date">17 December 2024 - 15 PM</p>
-                    </div>
-                    <p>Keluhan kehidupan sebenarnya</p>
-                    <div class="mt-4">
-                        <a href="#" class="button-green">Approve</a>
-                        <a href="#" class="button-transparent">Delete</a>
-                    </div>
-                </div>
+                <h5>Appointment Request</h5>
+                <?php if (mysqli_num_rows($result_appointments_approve) > 0): ?>
+                    <?php while ($appointment = mysqli_fetch_assoc($result_appointments_approve)): ?>
+                        <div class="mt-4 bg-white p-3 rounded">
+                            <div class="d-flex gap-3 align-items-center">
+                                <p class="fw-semibold"><?= htmlspecialchars($appointment['nama']); ?></p>
+                                <p class="unapproved-date">
+                                    <?= date('d F Y - H A', strtotime($appointment['waktu'] . ' ' . $appointment['waktu'])); ?>
+                                </p>
+                            </div>
+                            <p><?= htmlspecialchars($appointment['disease']); ?></p>
+                            <div class="mt-4">
+                                <?php if ($appointment['approve'] == 0): ?>
+                                    <a href="approve.php?id=<?= $appointment['id']; ?>" class="button-green">Approve</a>
+                                <?php endif; ?>
+                                <a href="delete.php?id=<?= $appointment['id']; ?>" class="button-transparent">Delete</a>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <p class="text-muted">No appointments available.</p>
+                <?php endif; ?>
             </div>
+
+
 
             <div id="appointment-schedule" class="mt-5 flex-fill">
                 <h5>Appointment Schedule</h5>
