@@ -42,4 +42,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book_appointment'])) {
         echo "Failed to prepare the SQL statement.";
     }
 }
+
 ?>
