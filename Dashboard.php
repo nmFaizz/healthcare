@@ -5,15 +5,15 @@
         header("location:FormLogin.php");
     }
     $dokter_id = $_SESSION['dokter_id'];
-// Step 1: Connect to MySQL database
-include('config.php');  // assuming this file contains your DB connection details
+include('config.php'); 
 
-// Step 2: Write the SQL query to get the number of rows in the table
-$sql = "SELECT COUNT(*) AS total_rows FROM appointment WHERE dokter_id=$dokter_id";  // replace 'your_table_name' with your actual table name
+$sql = "SELECT COUNT(*) AS total_rows FROM appointment WHERE dokter_id=$dokter_id";  
 
 $result = mysqli_query($db, $sql);  
 
 $total_rows;
+
+
 
 if ($result) {
     $row = mysqli_fetch_assoc($result);  
@@ -29,7 +29,7 @@ $sql_unapprove = "SELECT COUNT(*) AS unapproved_rows
 
 $result_unapprove = mysqli_query($db, $sql_unapprove);
 
-$unapproved_rows = 0; // Default to 0 in case of an error
+$unapproved_rows = 0; 
 if ($result_unapprove) {
     $row_unapprove = mysqli_fetch_assoc($result_unapprove);
     $unapproved_rows = $row_unapprove['unapproved_rows'];
@@ -43,7 +43,7 @@ $sql_approve = "SELECT COUNT(*) AS unapproved_rows
 
 $result_approve = mysqli_query($db, $sql_approve);
 
-$approved_rows = 0; // Default to 0 in case of an error
+$approved_rows = 0; 
 if ($result_approve) {
     $row_approve = mysqli_fetch_assoc($result_approve);
     $approved_rows = $row_approve['unapproved_rows'];
@@ -52,15 +52,50 @@ if ($result_approve) {
 }
 
 
-$sql_appointments_approve = "SELECT * FROM appointment WHERE dokter_id = $dokter_id AND approve = 0 ORDER BY waktu ASC";
+$sql_appointments_approve = "SELECT * FROM appointment WHERE dokter_id = $dokter_id AND approve = 0 ORDER BY waktu DESC";
 $result_appointments_approve = mysqli_query($db, $sql_appointments_approve);
 
 if (!$result_appointments_approve) {
     die("Error fetching appointments: " . mysqli_error($db));
 }
 
+$sql_get_approved = "SELECT * FROM appointment WHERE dokter_id = $dokter_id AND approve = 1 ORDER BY waktu DESC";
+$result_get_approved = mysqli_query($db, $sql_get_approved);
 
-// Close the database connection
+if (!$result_get_approved) {
+    die("Error fetching appointments: " . mysqli_error($db));
+}
+
+
+if (isset($_GET['approved'])) {
+    $app_id = $_GET['app_id'];
+
+    $app_sql = "UPDATE appointment SET approve = 1 WHERE id = $app_id";
+    if (mysqli_query($db, $app_sql)) {
+        header("Location: Dashboard.php");
+        exit();
+    } else {
+        echo "Error approving: " . mysqli_error($db);
+    }
+}
+
+
+
+if (isset($_GET['delete'])) {
+    $app_id = $_GET['app_id'];
+
+    $delete_sql = "DELETE FROM appointment WHERE id = $app_id";
+    if (mysqli_query($db, $delete_sql)) {
+        header("Location: Dashboard.php");
+        exit();
+    } else {
+        echo "Error approving: " . mysqli_error($db);
+    }
+}
+
+
+
+
 mysqli_close($db);
 ?>
 
@@ -185,9 +220,9 @@ mysqli_close($db);
                             <p><?= htmlspecialchars($appointment['disease']); ?></p>
                             <div class="mt-4">
                                 <?php if ($appointment['approve'] == 0): ?>
-                                    <a href="approve.php?id=<?= $appointment['id']; ?>" class="button-green">Approve</a>
+                                    <a type="button" href="Dashboard.php?approved=true&app_id=<?= $appointment['id']; ?>" class="button-green">Approve</a>
                                 <?php endif; ?>
-                                <a href="delete.php?id=<?= $appointment['id']; ?>" class="button-transparent">Delete</a>
+                                <a href="Dashboard.php?delete=true&app_id=<?= $appointment['id']; ?>" class="button-transparent">Delete</a>
                             </div>
                         </div>
                     <?php endwhile; ?>
@@ -201,26 +236,19 @@ mysqli_close($db);
             <div id="appointment-schedule" class="mt-5 flex-fill">
                 <h5>Appointment Schedule</h5>
                 
-                <div class="mt-4 bg-white p-3 rounded">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h5 class="text-green">17 December 2024 - 15 PM</h5>
-                            <p class="fw-semibold">Nur Muhammad Faiz</p>
-                            <p>Keluhan kehidupan sebenarnya</p>
+                <?php if (mysqli_num_rows($result_get_approved) > 0): ?>
+                    <?php while ($appointment = mysqli_fetch_assoc($result_get_approved)): ?>
+                        <div class="mt-4 bg-white p-3 rounded">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="text-green"><?= date('d F Y - H A', strtotime($appointment['waktu'] . ' ' . $appointment['waktu'])); ?></h5>
+                                    <p class="fw-semibold"><?= htmlspecialchars($appointment['nama']); ?></p>
+                                    <p><?= htmlspecialchars($appointment['disease']); ?></p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="mt-4 bg-white p-3 rounded">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h5 class="text-green">17 December 2024 - 15 PM</h5>
-                            <p class="fw-semibold">Nur Muhammad Faiz</p>
-                            <p>Keluhan kehidupan sebenarnya</p>
-                        </div>
-                    </div>
-                </div>
-
+                    <?php endwhile; ?>
+                <?php endif; ?>
             </div>
 
         </section>

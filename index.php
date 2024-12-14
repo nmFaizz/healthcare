@@ -15,9 +15,12 @@ if ($result) {
     }
 }
 
-if ($_SESSION["role"] != "pasien") {
-    header("location:Dashboard.php");
-}
+if(isset($_SESSION['id'])){
+    if ($_SESSION["role"] == "dokter") {
+        header("location:Dashboard.php");
+    }
+} 
+
 
 $doctors_json = json_encode($doctors);
 echo "<script>console.log(" . $doctors_json . ");</script>";

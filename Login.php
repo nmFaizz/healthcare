@@ -36,6 +36,7 @@
                 session_start();
 
                 $_SESSION['id']=session_id();
+                $_SESSION['role']='dokter';
                 $_SESSION['nama']=$data['nama'];
                 $_SESSION['email']=$data['email'];
                 $_SESSION['dokter_id']=$data['id'];

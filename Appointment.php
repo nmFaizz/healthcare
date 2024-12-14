@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book_appointment'])) {
         echo "<script>window.location.href = 'FormLogin.php';</script>";
     }
     
-    if (empty($user_id) || empty($name) || empty($email) || empty($department) || empty($waktu)) {
-        die("All fields are required. User ID: $user_id, Name: $name, Email: $email, Department: $department, Time: $waktu");
+    if (empty($user_id) || empty($name) || empty($umur) || empty($disease) || empty($waktu)) {
+        die("All fields are required. User ID: $user_id, Name: $name, Umur: $umur, Disease: $disease, Time: $waktu");
     }
 
   
@@ -28,8 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book_appointment'])) {
   
     $stmt = mysqli_prepare($db, $sql);
     if ($stmt) {
-        
-        mysqli_stmt_bind_param($stmt, "issss", $user_id,$dokter_id, $name, $umur, $disease, $time, false);
+        $false = 0;        
+        mysqli_stmt_bind_param($stmt, "iissssi", $user_id, $dokter_id, $name, $umur, $disease, $time, $false);
 
       
         if (mysqli_stmt_execute($stmt)) {
