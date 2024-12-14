@@ -178,10 +178,8 @@ mysqli_close($db);
                 <div class="mt-4 bg-white p-3 rounded">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <div class="d-flex gap-3 align-items-center">
-                                <p class="fw-semibold">Nur Muhammad Faiz</p>
-                                <p class="unapproved-date">17 December 2024 - 15 PM</p>
-                            </div>
+                            <h5 class="text-green">17 December 2024 - 15 PM</h5>
+                            <p class="fw-semibold">Nur Muhammad Faiz</p>
                             <p>Keluhan kehidupan sebenarnya</p>
                         </div>
                     </div>
@@ -190,10 +188,8 @@ mysqli_close($db);
                 <div class="mt-4 bg-white p-3 rounded">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <div class="d-flex gap-3 align-items-center">
-                                <p class="fw-semibold">Nur Muhammad Faiz</p>
-                                <p class="unapproved-date">17 December 2024 - 15 PM</p>
-                            </div>
+                            <h5 class="text-green">17 December 2024 - 15 PM</h5>
+                            <p class="fw-semibold">Nur Muhammad Faiz</p>
                             <p>Keluhan kehidupan sebenarnya</p>
                         </div>
                     </div>

@@ -15,6 +15,10 @@ if ($result) {
     }
 }
 
+if ($_SESSION["role"] != "pasien") {
+    header("location:Dashboard.php");
+}
+
 $doctors_json = json_encode($doctors);
 echo "<script>console.log(" . $doctors_json . ");</script>";
 echo "<script>const doctorsData = " . $doctors_json . ";</script>";
