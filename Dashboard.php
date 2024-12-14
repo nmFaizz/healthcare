@@ -59,7 +59,7 @@ if (!$result_appointments_approve) {
     die("Error fetching appointments: " . mysqli_error($db));
 }
 
-$sql_get_approved = "SELECT * FROM appointment WHERE dokter_id = $dokter_id AND approve = 1 ORDER BY waktu DESC";
+$sql_get_approved = "SELECT * FROM appointment WHERE dokter_id = $dokter_id AND approve = 1 ORDER BY waktu DESCgi";
 $result_get_approved = mysqli_query($db, $sql_get_approved);
 
 if (!$result_get_approved) {
