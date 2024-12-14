@@ -4,14 +4,12 @@
     if(!isset($_SESSION['id'])){
         header("location:FormLogin.php");
     }
-?>
-
-<?php
+    $dokter_id = $_SESSION['dokter_id'];
 // Step 1: Connect to MySQL database
 include('config.php');  // assuming this file contains your DB connection details
 
 // Step 2: Write the SQL query to get the number of rows in the table
-$sql = "SELECT COUNT(*) AS total_rows FROM appointment";  // replace 'your_table_name' with your actual table name
+$sql = "SELECT COUNT(*) AS total_rows FROM appointment WHERE dokter_id=$dokter_id";  // replace 'your_table_name' with your actual table name
 
 // Step 3: Execute the query
 $result = mysqli_query($db, $sql);  // assuming $db is your database connection
@@ -22,27 +20,44 @@ if ($result) {
     $row = mysqli_fetch_assoc($result);  // fetch the result as an associative array
     $total_rows = $row['total_rows'];  // get the number of rows
 
-    // Step 5: Output the result
-    echo "Total rows in the table: " . $total_rows;
 } else {
     echo "Error: " . mysqli_error($db);
 }
+
+$sql_unapprove = "SELECT COUNT(*) AS unapproved_rows 
+                  FROM appointment 
+                  WHERE dokter_id = $dokter_id AND approve = 0";
+
+$result_unapprove = mysqli_query($db, $sql_unapprove);
+
+$unapproved_rows = 0; // Default to 0 in case of an error
+if ($result_unapprove) {
+    $row_unapprove = mysqli_fetch_assoc($result_unapprove);
+    $unapproved_rows = $row_unapprove['unapproved_rows'];
+} else {
+    echo "Error fetching unapproved rows: " . mysqli_error($db);
+}
+
+$sql_approve = "SELECT COUNT(*) AS unapproved_rows 
+                  FROM appointment 
+                  WHERE dokter_id = $dokter_id AND approve = 1";
+
+$result_approve = mysqli_query($db, $sql_approve);
+
+$approved_rows = 0; // Default to 0 in case of an error
+if ($result_approve) {
+    $row_approve = mysqli_fetch_assoc($result_approve);
+    $approved_rows = $row_approve['unapproved_rows'];
+} else {
+    echo "Error fetching unapproved rows: " . mysqli_error($db);
+}
+
 
 // Close the database connection
 mysqli_close($db);
 ?>
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello, dokter <?=$_SESSION['nama']?></h1>
-</body>
-</html> -->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -139,12 +154,12 @@ mysqli_close($db);
                 <p>Appointment</p>
             </div>
             <div class="stat-card d-flex flex-column justify-content-center align-items-center flex-fill bg-white">
-                <h1>150</h1>
-                <p>Appointments</p>
+                <h1><?= $unapproved_rows ?></h1>
+                <p>Unapproved</p>
             </div>
             <div class="stat-card d-flex flex-column justify-content-center align-items-center flex-fill bg-white">
-                <h1>540</h1>
-                <p>Done</p>
+                <h1><?= $approved_rows ?></h1>
+                <p>Approved</p>
             </div>
         </section>
         

@@ -249,10 +249,10 @@ mysqli_close($db);
                 <textarea class="form-control" name="disease" id="disease" required rows="3" style="resize: none;"> </textarea>
                 
                 <label for="doctor" class="form-label">Doctor *</label>
-                <select class="form-select form-select-sm" name="doctor" id="doctor" required>
+                <select class="form-select form-select-sm" name="doctor_id" id="doctor" required>
                     <option value="" selected disabled>Choose Your Doctor</option>
                     <?php foreach ($doctors as $doctor): ?>
-                        <option value="<?= htmlspecialchars($doctor['id']); ?>">
+                        <option   value="<?= htmlspecialchars($doctor['id']); ?>">
                             <?= htmlspecialchars($doctor['nama']) . " - " . htmlspecialchars($doctor['speciality']); ?>
                         </option>
                     <?php endforeach; ?>

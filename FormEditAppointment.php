@@ -1,22 +1,37 @@
 <?php 
+    include('config.php');
     session_start();
     if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['get_appointment'])) {
         // Retrieve GET data
         $id = $_GET['id'];
         $nama = $_GET['nama'];
-        $email = $_GET['email'];
-        $department = $_GET['department'];
+        $dokter = $_GET['dokter'];
+        $umur = $_GET['umur'];
+        $disease = $_GET['disease'];
         $waktu = $_GET['waktu'];
     
         // Prepare data for display
         $data = [
             'id' => htmlspecialchars($id),
             'nama' => htmlspecialchars($nama),
-            'email' => htmlspecialchars($email),
-            'department' => htmlspecialchars($department),
+            'dokter' => htmlspecialchars($dokter),
+            'umur' => htmlspecialchars($umur),
+            'disease' => htmlspecialchars($disease),
             'waktu' => htmlspecialchars($waktu),
         ];
     }
+
+    $query = "SELECT * FROM dokter";
+    $result = mysqli_query($db, $query);
+
+    $doctors = array();
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $doctors[] = $row;  
+        }
+    }
+
+
     
 ?>
 
@@ -70,21 +85,26 @@
             <input type="hidden" name="id" value="<?= htmlspecialchars($data['id'] ?? '') ?>">
 
             <label for="nama" class="form-label">Name *</label>
-            <input type="text" class="form-control" name="nama" id="nama" value="<?= htmlspecialchars($data['nama'] ?? '') ?>" placeholder="Full Name *" required>
+            <input type="text" class="form-control" name="name" id="nama" value="<?= htmlspecialchars($data['nama'] ?? '') ?>" placeholder="Full Name *" required>
 
-            <label for="email" class="form-label">Email Address *</label>
-            <input type="email" class="form-control" name="email" id="email" value="<?= htmlspecialchars($data['email'] ?? '') ?>" placeholder="example@gmail.com" required>
+            <label for="email" class="form-label">Age *</label>
+            <input type="number" class="form-control" name="age" id="umur" value="<?= htmlspecialchars($data['umur'] ?? '') ?>" placeholder="example@gmail.com" required>
 
-            <label for="department" class="form-label">Department *</label>
-            <select class="form-select form-select-sm" name="department" id="department" required>
-                <option value="" selected disabled>Please Select</option>
-                <option value="1" <?= isset($data['department']) && $data['department'] == "1" ? 'selected' : '' ?>>One</option>
-                <option value="2" <?= isset($data['department']) && $data['department'] == "2" ? 'selected' : '' ?>>Two</option>
-                <option value="3" <?= isset($data['department']) && $data['department'] == "3" ? 'selected' : '' ?>>Three</option>
+            <label for="dokter" class="form-label">Doctor *</label>
+            <select class="form-select form-select-sm" name="doctor_id" id="doctor_id" required>
+                    <?php foreach ($doctors as $doctor): ?>
+                        <option <?php echo ($dokter==$doctor['id']) ? "selected" : " " ?>   value="<?= htmlspecialchars($doctor['id']); ?>">
+                            <?= htmlspecialchars($doctor['nama']) . " - " . htmlspecialchars($doctor['speciality']); ?>
+                        </option>
+                    <?php endforeach; ?>
             </select>
 
+            <label for="disease" class="form-label">Disease *</label>
+            <input type="text" class="form-control" name="disease" id="disease" value="<?= htmlspecialchars($data['disease'] ?? '') ?>" required>
+
+
             <label for="waktu" class="form-label">Time *</label>
-            <input type="datetime-local" class="form-control" name="waktu" id="waktu" value="<?= htmlspecialchars($data['waktu'] ?? '') ?>" required>
+            <input type="datetime-local" class="form-control" name="time" id="waktu" value="<?= htmlspecialchars($data['waktu'] ?? '') ?>" required>
         </div>
         <button type="submit" name="edit_appointment" class="button-green text-light text-center border-0 mt-3">Save Changes</button>
     </form>

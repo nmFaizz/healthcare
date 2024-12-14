@@ -17,6 +17,25 @@
         }
     }
 
+    $sql_dokter = "SELECT * FROM dokter";
+    $result_dokter = mysqli_query($db, $sql_dokter);
+
+    $dokter = [];
+    if(mysqli_num_rows($result_dokter)>0){
+        while($row_dokter = mysqli_fetch_assoc($result_dokter)){
+            $dokter[] = $row_dokter;
+        }
+    }
+
+    function getDoctorName($dokter, $dokter_id) {
+        foreach ($dokter as $d) {
+            if ($d['id'] == $dokter_id) {
+                return $d['nama'];
+            }
+        }
+        return "Unknown Doctor"; 
+    }
+
     if (isset($_GET['delete_appointment'])) {
         $appointment_id = $_GET['appointment_id'];
     
@@ -107,11 +126,22 @@
                         <label class="form-label fw-semibold fs-5">Name:</label>
                         <input id="nama" name="nama" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['nama']) ?>" readonly>
 
-                        <label class="form-label fw-semibold fs-5">Email Address:</label>
-                        <input id="email" name="email" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['email']) ?>" readonly>
+                        <label class="form-label fw-semibold fs-5">Age:</label>
+                        <input id="email" name="umur" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['umur']) ?>" readonly>
 
-                        <label class="form-label fw-semibold fs-5">Department:</label>
-                        <input id="department" name="department" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['department']) ?>" readonly>
+                        <label class="form-label fw-semibold fs-5">Doctor:</label>
+                        <input id="department" name="dokter" class="form-control-plaintext" value="<?= htmlspecialchars(getDoctorName($dokter, $appointment['dokter_id'])) ?>" readonly>
+
+
+                        <label class="form-label fw-semibold fs-5">Disease:</label>
+                        <input id="department" name="disease" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['disease']) ?>" readonly>
+
+                        <label class="form-label fw-semibold fs-5">Approve:</label>
+                        <?php if($appointment['approve']==TRUE): ?>
+                            <p class="text-success">APPROVE</p>
+                        <?php else: ?>
+                            <p class="text-danger">NOT APPROVE</p>
+                        <?php endif; ?>
 
                         <label class="form-label fw-semibold fs-5">Time:</label>
                         <input id="time" name="waktu" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['waktu']) ?>" readonly>
