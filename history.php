@@ -17,6 +17,18 @@
             $appointments[] = $row;
         }
     }
+
+    if (isset($_GET['delete_appointment'])) {
+        $appointment_id = $_GET['appointment_id'];
+    
+        $delete_sql = "DELETE FROM appointment WHERE id = $appointment_id";
+        if (mysqli_query($db, $delete_sql)) {
+            header("Location: history.php");
+            exit();
+        } else {
+            echo "Error deleting record: " . mysqli_error($db);
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +48,21 @@
             color: white;
             border: none;
         }
+
+        .button-transparent {
+            background-color: transparent;
+            color: #005C63 !important;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-right: 10px;
+            text-align: center;
+        }
+
+        .button-transparent:hover {
+            background-color: whitesmoke;
+            color: #007E85 !important;
+        }
+
         .button-green:hover { background-color: #005C63; }
         .form-login {
             background-color: white;
@@ -90,6 +117,7 @@
                         <label class="form-label fw-semibold fs-5">Time:</label>
                         <input id="time" name="waktu" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['waktu']) ?>" readonly>
                     <button type="submit" name="get_appointment" class="button-green text-light text-center border-0 mt-3">Edit Appointment</button>
+                    <a href="history.php?delete_appointment=true&appointment_id=<?= $appointment['id'] ?>" class="button-transparent text-light text-center mt-3">Delete</a>
             </form>
             <?php endforeach; ?>
         <?php else: ?>
