@@ -223,7 +223,13 @@ mysqli_close($db);
                 <p>At our hospital, we are dedicated to providing exceptional medical care to our patients and their families. Our experienced team of medical professionals, cutting-edge technology, and compassionate approach make us a leader in the healthcare industry</p>
 
                 <div class="mt-5">
-                    <a href="#" class="button-green">Explore</a>
+                    <?php 
+                        if (!isset($_SESSION['id'])) {
+                            echo '<a href="FormLogin.php" class="button-green">Start Appointment</a>';
+                        } else {
+                            echo '<a href="service.php" class="button-green">Start Appointment</a>';
+                        }
+                    ?>
                 </div>
             </div>
             <div class="flex-fill">

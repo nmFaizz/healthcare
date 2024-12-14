@@ -5,6 +5,32 @@
     }
 ?>
 
+<?php
+// Step 1: Connect to MySQL database
+include('config.php');  // assuming this file contains your DB connection details
+
+// Step 2: Write the SQL query to get the number of rows in the table
+$sql = "SELECT COUNT(*) AS total_rows FROM appointment";  // replace 'your_table_name' with your actual table name
+
+// Step 3: Execute the query
+$result = mysqli_query($db, $sql);  // assuming $db is your database connection
+
+$total_rows;
+// Step 4: Fetch the result
+if ($result) {
+    $row = mysqli_fetch_assoc($result);  // fetch the result as an associative array
+    $total_rows = $row['total_rows'];  // get the number of rows
+
+    // Step 5: Output the result
+    echo "Total rows in the table: " . $total_rows;
+} else {
+    echo "Error: " . mysqli_error($db);
+}
+
+// Close the database connection
+mysqli_close($db);
+?>
+
 <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,8 +134,8 @@
         </div>
         <section class="d-flex flex-column flex-md-row gap-4 mt-3">
             <div class="stat-card d-flex flex-column justify-content-center align-items-center flex-fill bg-white">
-                <h1>71</h1>
-                <p>Unapproved</p>
+                <?php echo "<h1>$total_rows</h1>" ?>
+                <p>Appointment</p>
             </div>
             <div class="stat-card d-flex flex-column justify-content-center align-items-center flex-fill bg-white">
                 <h1>150</h1>
