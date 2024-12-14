@@ -53,6 +53,14 @@ if ($result_approve) {
 }
 
 
+$sql_appointments_approve = "SELECT * FROM appointment WHERE dokter_id = $dokter_id AND approve = 0 ORDER BY waktu ASC";
+$result_appointments_approve = mysqli_query($db, $sql_appointments_approve);
+
+if (!$result_appointments_approve) {
+    die("Error fetching appointments: " . mysqli_error($db));
+}
+
+
 // Close the database connection
 mysqli_close($db);
 ?>
@@ -165,30 +173,31 @@ mysqli_close($db);
         
         <section class="d-flex flex-md-row flex-column gap-4">
             <div id="appointment-list" class="mt-5 flex-fill rounded">
-                <h5>Appointment List</h5>
-                <div class="mt-4 bg-white p-3 rounded">
-                    <div class="d-flex gap-3 align-items-center">
-                        <p class="fw-semibold">Nur Muhammad Faiz</p>
-                        <p class="unapproved-date">17 December 2024 - 15 PM</p>
-                    </div>
-                    <p>Keluhan kehidupan sebenarnya</p>
-                    <div class="mt-4">
-                        <a href="#" class="button-green">Approve</a>
-                        <a href="#" class="button-transparent">Delete</a>
-                    </div>
-                </div>
-                <div class="mt-4 bg-white p-3 rounded">
-                    <div class="d-flex gap-3 align-items-center">
-                        <p class="fw-semibold">Nur Muhammad Faiz</p>
-                        <p class="unapproved-date">17 December 2024 - 15 PM</p>
-                    </div>
-                    <p>Keluhan kehidupan sebenarnya</p>
-                    <div class="mt-4">
-                        <a href="#" class="button-green">Approve</a>
-                        <a href="#" class="button-transparent">Delete</a>
-                    </div>
-                </div>
+                <h5>Appointment Request</h5>
+                <?php if (mysqli_num_rows($result_appointments_approve) > 0): ?>
+                    <?php while ($appointment = mysqli_fetch_assoc($result_appointments_approve)): ?>
+                        <div class="mt-4 bg-white p-3 rounded">
+                            <div class="d-flex gap-3 align-items-center">
+                                <p class="fw-semibold"><?= htmlspecialchars($appointment['nama']); ?></p>
+                                <p class="unapproved-date">
+                                    <?= date('d F Y - H A', strtotime($appointment['waktu'] . ' ' . $appointment['waktu'])); ?>
+                                </p>
+                            </div>
+                            <p><?= htmlspecialchars($appointment['disease']); ?></p>
+                            <div class="mt-4">
+                                <?php if ($appointment['approve'] == 0): ?>
+                                    <a href="approve.php?id=<?= $appointment['id']; ?>" class="button-green">Approve</a>
+                                <?php endif; ?>
+                                <a href="delete.php?id=<?= $appointment['id']; ?>" class="button-transparent">Delete</a>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <p class="text-muted">No appointments available.</p>
+                <?php endif; ?>
             </div>
+
+
 
             <div id="appointment-schedule" class="mt-5 flex-fill">
                 <h5>Appointment Schedule</h5>

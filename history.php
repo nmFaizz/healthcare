@@ -145,8 +145,10 @@
 
                         <label class="form-label fw-semibold fs-5">Time:</label>
                         <input id="time" name="waktu" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['waktu']) ?>" readonly>
-                    <button type="submit" name="get_appointment" class="button-green text-light text-center border-0 mt-3">Edit Appointment</button>
-                    <a href="history.php?delete_appointment=true&appointment_id=<?= $appointment['id'] ?>" class="button-transparent text-light text-center mt-3">Delete</a>
+                    <?php if($appointment['approve']==0): ?>
+                        <button type="submit" name="get_appointment" class="button-green text-light text-center border-0 mt-3">Edit Appointment</button>
+                        <a href="history.php?delete_appointment=true&appointment_id=<?= $appointment['id'] ?>" class="button-transparent text-light text-center mt-3">Delete</a>
+                    <?php endif; ?>
             </form>
             <?php endforeach; ?>
         <?php else: ?>
