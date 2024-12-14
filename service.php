@@ -176,6 +176,9 @@ mysqli_close($db);
       margin: 5px;
     }
 
+    .appointment-input{
+        width: 350px;
+    }
 </style>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -245,15 +248,20 @@ mysqli_close($db);
                 <label for="name" class="form-label">Name *</label>
                 <input type="text" class="form-control" name="name" id="name" placeholder="Full Name *" required>
                 
-                <label for="email" class="form-label">Email Address *</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="example@gmail.com" required>
+                <label for="age" class="form-label">Age *</label>
+                <input type="number" class="form-control" name="age" id="age" placeholder="Your Age *" required>
+
+                <label for="disease" class="form-label">Disease *</label>
+                <textarea class="form-control" name="disease" id="disease" required rows="3" style="resize: none;"> </textarea>
                 
-                <label for="department" class="form-label">Department *</label>
-                <select class="form-select form-select-sm" name="department" id="department" required>
-                    <option value="" selected disabled>Please Select</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <label for="doctor" class="form-label">Doctor *</label>
+                <select class="form-select form-select-sm" name="doctor" id="doctor" required>
+                    <option value="" selected disabled>Choose Your Doctor</option>
+                    <?php foreach ($doctors as $doctor): ?>
+                        <option value="<?= htmlspecialchars($doctor['id']); ?>">
+                            <?= htmlspecialchars($doctor['nama']) . " - " . htmlspecialchars($doctor['speciality']); ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
                 
                 <label for="time" class="form-label">Time *</label>
