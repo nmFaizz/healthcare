@@ -20,6 +20,7 @@
                 session_start();
 
                 $_SESSION['id']=session_id();
+                $_SESSION['role']='pasien';
                 $_SESSION['nama']=$data['nama'];
                 $_SESSION['email']=$data['email'];
                 $_SESSION['user_id']=$data['id'];
@@ -35,9 +36,11 @@
                 session_start();
 
                 $_SESSION['id']=session_id();
+                $_SESSION['role']='dokter';
                 $_SESSION['nama']=$data['nama'];
                 $_SESSION['email']=$data['email'];
                 $_SESSION['dokter_id']=$data['id'];
+
 
                 header("location:Dashboard.php");
             }

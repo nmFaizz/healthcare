@@ -4,7 +4,6 @@ session_start();
 
 include('config.php');
 
-
 $query = "SELECT * FROM dokter";
 $result = mysqli_query($db, $query);
 
@@ -15,6 +14,13 @@ if ($result) {
         $doctors[] = $row;  
     }
 }
+
+if(isset($_SESSION['id'])){
+    if ($_SESSION["role"] == "dokter") {
+        header("location:Dashboard.php");
+    }
+} 
+
 
 $doctors_json = json_encode($doctors);
 echo "<script>console.log(" . $doctors_json . ");</script>";
@@ -224,7 +230,13 @@ mysqli_close($db);
                 <p>At our hospital, we are dedicated to providing exceptional medical care to our patients and their families. Our experienced team of medical professionals, cutting-edge technology, and compassionate approach make us a leader in the healthcare industry</p>
 
                 <div class="mt-5">
-                    <a href="#" class="button-green">Explore</a>
+                    <?php 
+                        if (!isset($_SESSION['id'])) {
+                            echo '<a href="FormLogin.php" class="button-green">Start Appointment</a>';
+                        } else {
+                            echo '<a href="service.php" class="button-green">Start Appointment</a>';
+                        }
+                    ?>
                 </div>
             </div>
             <div class="flex-fill">

@@ -6,12 +6,15 @@ include('config.php');
 $query = "SELECT * FROM dokter";
 $result = mysqli_query($db, $query);
 
-
 $doctors = array();
 if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
         $doctors[] = $row;  
     }
+}
+
+if ($_SESSION["role"] != "pasien") {
+    header("location:Dashboard.php");
 }
 
 $doctors_json = json_encode($doctors);
@@ -108,6 +111,7 @@ mysqli_close($db);
         background-color: white;
         padding: 30px 40px;
         border-radius: 10px;
+        margin-right: 50px;
         gap: 30px;
     }
     .border-green{
@@ -170,6 +174,12 @@ mysqli_close($db);
       margin: 5px;
     }
 
+    @media (max-width: 1000px) {
+        .form-appointment{
+            margin-right: 0;
+        }
+    }
+
 </style>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -212,13 +222,13 @@ mysqli_close($db);
 
     
     <div class="container-fluid py-5 d-flex flex-column flex-lg-row justify-content-center bg-hero" id="service">
-        <div class="p-5 lc-block col-xxl-7 col-lg-8 col-12 jumbotron-content">
+        <div class="flex-fill p-5 lc-block jumbotron-content">
             <div class="lc-block">
                 <div editable="rich">
                     <h2 class="fw-bolder display-3">Meet the Best <br/> Hospital</h2>
                 </div>
             </div>
-            <div class="lc-block col-md-8 mt-5">
+            <div class="lc-block mt-5">
                 <div editable="rich">
                     <p class="lead fw-normal">
                         We know how large objects will act, 
@@ -231,7 +241,7 @@ mysqli_close($db);
                 <a class="button-transparent text-light text-center rounded-pill fw-semibold border-green" href="#">Learn More</a>
             </div>
         </div>
-        <form action="Appointment.php" id="appointment-form" method="POST" class="form-appointment d-flex flex-column text-black fw-semibold">
+        <form action="Appointment.php" id="appointment-form" method="POST" class="flex-fill form-appointment d-flex flex-column text-black fw-semibold">
             <h1>Book Appointment</h1>
             <div class="appointment-input d-flex flex-column gap-2">
                 <?php if(isset($_SESSION['id'])): ?>
@@ -240,15 +250,20 @@ mysqli_close($db);
                 <label for="name" class="form-label">Name *</label>
                 <input type="text" class="form-control" name="name" id="name" placeholder="Full Name *" required>
                 
-                <label for="email" class="form-label">Email Address *</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="example@gmail.com" required>
+                <label for="age" class="form-label">Age *</label>
+                <input type="number" class="form-control" name="age" id="age" placeholder="Your Age *" required>
+
+                <label for="disease" class="form-label">Disease *</label>
+                <textarea class="form-control" name="disease" id="disease" required rows="3" style="resize: none;"> </textarea>
                 
-                <label for="department" class="form-label">Department *</label>
-                <select class="form-select form-select-sm" name="department" id="department" required>
-                    <option value="" selected disabled>Please Select</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <label for="doctor" class="form-label">Doctor *</label>
+                <select class="form-select form-select-sm" name="doctor_id" id="doctor" required>
+                    <option value="" selected disabled>Choose Your Doctor</option>
+                    <?php foreach ($doctors as $doctor): ?>
+                        <option   value="<?= htmlspecialchars($doctor['id']); ?>">
+                            <?= htmlspecialchars($doctor['nama']) . " - " . htmlspecialchars($doctor['speciality']); ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
                 
                 <label for="time" class="form-label">Time *</label>
@@ -262,8 +277,6 @@ mysqli_close($db);
 
     </div>
 
-    
-                
     <!-- Form to input search criteria -->
     <div class="container my-5 find-doctor bg-white rounded-4 p-5">
         <h1>Find A Doctor</h1>
@@ -290,6 +303,7 @@ mysqli_close($db);
         </div>
     </div>
 
+    <!-------- Services We Provide --------->
     <section>
         <div class="container" id="service-list">
             <h1 style="color: #007E85" class="text-center">Services We Provide</h1>
@@ -347,33 +361,36 @@ mysqli_close($db);
             </div>        
         </div>
     </section>
+    <!-------- End Services We Provide --------->
+
 
     <!------- Customer Reviews------->
     <section>
-    <div class="container pb-5" id="customer-review">
-        <h1 style="color: #007E85" class="text-center">What Our Customer Say</h1>
-        <p class="text-center mb-5">Problems trying to resolve the conflict between the two major realms of <br> Classical physics: Newtonian mechanics </p>
-        <div class="row gap-5 mb-3 d-flex justify-content-center">
-            <div class="card col-sm-6 col-lg-4 p-4">
-                <img class="stars mb-3" src="./images/stars.png" alt="">
-                <p>Slate helps you see how many 
-                more days you need to work to 
-                reach your financial goal.</p>
-                <img class="user-profile" src="./images/user1.jpg" alt="user">
-            </div>
-            <div class="card col-sm-6 col-lg-4 p-4">
-                <img class="stars mb-3" src="./images/stars.png" alt="">
-                <p>Slate helps you see how many 
-                more days you need to work to 
-                reach your financial goal.</p>
-                <img class="user-profile" src="./images/user2.jpg" alt="user">
-            </div>
-            <div class="card col-sm-6 col-lg-4 p-4">
-                <img class="stars mb-3" src="./images/stars.png" alt="user">
-                <p>Slate helps you see how many 
-                more days you need to work to 
-                reach your financial goal.</p>
-                <img class="user-profile" src="./images/user3.jpg" alt="user">
+        <div class="container pb-5" id="customer-review">
+            <h1 style="color: #007E85" class="text-center">What Our Customer Say</h1>
+            <p class="text-center mb-5">Problems trying to resolve the conflict between the two major realms of <br> Classical physics: Newtonian mechanics </p>
+            <div class="row gap-5 mb-3 d-flex justify-content-center">
+                <div class="card col-sm-6 col-lg-4 p-4">
+                    <img class="stars mb-3" src="./images/stars.png" alt="">
+                    <p>Slate helps you see how many 
+                    more days you need to work to 
+                    reach your financial goal.</p>
+                    <img class="user-profile" src="./images/user1.jpg" alt="user">
+                </div>
+                <div class="card col-sm-6 col-lg-4 p-4">
+                    <img class="stars mb-3" src="./images/stars.png" alt="">
+                    <p>Slate helps you see how many 
+                    more days you need to work to 
+                    reach your financial goal.</p>
+                    <img class="user-profile" src="./images/user2.jpg" alt="user">
+                </div>
+                <div class="card col-sm-6 col-lg-4 p-4">
+                    <img class="stars mb-3" src="./images/stars.png" alt="user">
+                    <p>Slate helps you see how many 
+                    more days you need to work to 
+                    reach your financial goal.</p>
+                    <img class="user-profile" src="./images/user3.jpg" alt="user">
+                </div>
             </div>
         </div>
         
