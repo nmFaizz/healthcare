@@ -214,7 +214,7 @@ mysqli_close($db);
                             <div class="d-flex gap-3 align-items-center">
                                 <p class="fw-semibold"><?= htmlspecialchars($appointment['nama']); ?></p>
                                 <p class="unapproved-date">
-                                    <?= date('d F Y - H A', strtotime($appointment['waktu'] . ' ' . $appointment['waktu'])); ?>
+                                    <?= $appointment["waktu"]?>
                                 </p>
                             </div>
                             <p><?= htmlspecialchars($appointment['disease']); ?></p>
@@ -241,7 +241,7 @@ mysqli_close($db);
                         <div class="mt-4 bg-white p-3 rounded">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h5 class="text-green"><?= date('d F Y - H A', strtotime($appointment['waktu'] . ' ' . $appointment['waktu'])); ?></h5>
+                                    <h5 class="text-green"><?= $appointment["waktu"] ?></h5>
                                     <p class="fw-semibold"><?= htmlspecialchars($appointment['nama']); ?></p>
                                     <p><?= htmlspecialchars($appointment['disease']); ?></p>
                                 </div>
