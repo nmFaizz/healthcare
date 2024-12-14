@@ -76,22 +76,21 @@
     <div class="container d-flex flex-column justify-content-center align-items-center mt-5">
         <?php if (!empty($appointments)): ?>
             <?php foreach ($appointments as $appointment): ?>
-                <div class="form-login col-md-4 mb-4">
-                    <div>
+                <form action="FormEditAppointment.php" method="GET" class="form-login col-md-4 mb-4">
+                    <input type="hidden" name="id" value="<?= $appointment['id'] ?>">
                         <label class="form-label fw-semibold fs-5">Name:</label>
-                        <p id="name" class="form-control-plaintext"><?= htmlspecialchars($appointment['nama']) ?></p>
+                        <input id="nama" name="nama" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['nama']) ?>" readonly>
 
                         <label class="form-label fw-semibold fs-5">Email Address:</label>
-                        <p id="email" class="form-control-plaintext"><?= htmlspecialchars($appointment['email']) ?></p>
+                        <input id="email" name="email" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['email']) ?>" readonly>
 
                         <label class="form-label fw-semibold fs-5">Department:</label>
-                        <p id="department" class="form-control-plaintext"><?= htmlspecialchars($appointment['department']) ?></p>
+                        <input id="department" name="department" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['department']) ?>" readonly>
 
                         <label class="form-label fw-semibold fs-5">Time:</label>
-                        <p id="time" class="form-control-plaintext"><?= htmlspecialchars($appointment['waktu']) ?></p>
-                    </div>
-                    <button class="button-green text-light text-center border-0 mt-3">Edit Appointment</button>
-                </div>
+                        <input id="time" name="waktu" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['waktu']) ?>" readonly>
+                    <button type="submit" name="get_appointment" class="button-green text-light text-center border-0 mt-3">Edit Appointment</button>
+            </form>
             <?php endforeach; ?>
         <?php else: ?>
             <p>No appointments found.</p>

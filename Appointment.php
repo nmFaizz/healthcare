@@ -1,5 +1,11 @@
 <?php 
 include('config.php');
+session_start();
+if (!isset($_SESSION['id'])) {
+    echo "<script>alert('You must log in to access this page.');</script>";
+    echo "<script>window.location.href = 'index.php';</script>";
+    exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book_appointment'])) {
     
@@ -45,4 +51,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book_appointment'])) {
         echo "Failed to prepare the SQL statement.";
     }
 }
+
 ?>

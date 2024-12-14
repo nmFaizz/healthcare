@@ -3,7 +3,6 @@ session_start();
 
 include('config.php');
 
-
 $query = "SELECT * FROM dokter";
 $result = mysqli_query($db, $query);
 
@@ -231,11 +230,12 @@ mysqli_close($db);
                 <a class="button-transparent text-light text-center rounded-pill fw-semibold border-green" href="#">Learn More</a>
             </div>
         </div>
-        <form action="Appointment.php" method="POST" class="form-appointment d-flex flex-column text-black fw-semibold">
+        <form action="Appointment.php" id="appointment-form" method="POST" class="form-appointment d-flex flex-column text-black fw-semibold">
             <h1>Book Appointment</h1>
             <div class="appointment-input d-flex flex-column gap-2">
-                <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">    
-
+                <?php if(isset($_SESSION['id'])): ?>
+                    <input style="visibility: hidden;" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">    
+                <?php endif; ?>
                 <label for="name" class="form-label">Name *</label>
                 <input type="text" class="form-control" name="name" id="name" placeholder="Full Name *" required>
                 
@@ -521,8 +521,6 @@ mysqli_close($db);
         console.log(`Nama Dokter: ${doctor.nama}, Spesialisasi: ${doctor.speciality}`);
     });
 
-
-
     document.getElementById("doctor-form").addEventListener("submit", function (e) {
     e.preventDefault(); // Prevent form submission
     const nameInput = document.getElementById("find-doctor-name").value.toLowerCase();
@@ -551,6 +549,7 @@ mysqli_close($db);
         resultsContainer.innerHTML = "<p>No doctors found.</p>";
     }
 });
+
 
 </script>
 

@@ -71,15 +71,6 @@
                         <label for="perempuan">Perempuan</label>
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Role *</label>
-                    <div class="form-radio-group">
-                        <input type="radio" id="pasien" name="roles" value="pasien" required>
-                        <label for="pasien">Pasien</label>
-                        <input type="radio" id="dokter" name="roles" value="dokter" required>
-                        <label for="dokter">Dokter</label>
-                    </div>
-                </div>
                 <div class="d-flex justify-content-between align-items-center">
                     <button type="submit" name="registrasi" class="button-green">Sign Up</button>
                     <a href="FormLogin.php" class="text-primary">Login</a>
