@@ -6,7 +6,6 @@ include('config.php');
 $query = "SELECT * FROM dokter";
 $result = mysqli_query($db, $query);
 
-
 $doctors = array();
 if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
