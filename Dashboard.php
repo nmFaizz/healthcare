@@ -3,31 +3,29 @@
     if(!isset($_SESSION['id'])){
         header("location:FormLogin.php");
     }
+    if($_SESSION['role']=='pasien'){
+        header("location:index.php");
+    }
 ?>
 
 <?php
-// Step 1: Connect to MySQL database
-include('config.php');  // assuming this file contains your DB connection details
+include('config.php'); 
 
-// Step 2: Write the SQL query to get the number of rows in the table
-$sql = "SELECT COUNT(*) AS total_rows FROM appointment";  // replace 'your_table_name' with your actual table name
+$sql = "SELECT COUNT(*) AS total_rows FROM appointment";  
 
-// Step 3: Execute the query
-$result = mysqli_query($db, $sql);  // assuming $db is your database connection
+$result = mysqli_query($db, $sql);  
 
 $total_rows;
-// Step 4: Fetch the result
-if ($result) {
-    $row = mysqli_fetch_assoc($result);  // fetch the result as an associative array
-    $total_rows = $row['total_rows'];  // get the number of rows
 
-    // Step 5: Output the result
+if ($result) {
+    $row = mysqli_fetch_assoc($result);  
+    $total_rows = $row['total_rows'];  
+
     echo "Total rows in the table: " . $total_rows;
 } else {
     echo "Error: " . mysqli_error($db);
 }
 
-// Close the database connection
 mysqli_close($db);
 ?>
 

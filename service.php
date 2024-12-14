@@ -107,6 +107,7 @@ mysqli_close($db);
         background-color: white;
         padding: 30px 40px;
         border-radius: 10px;
+        margin-right: 50px;
         gap: 30px;
     }
     .border-green{
@@ -169,9 +170,12 @@ mysqli_close($db);
       margin: 5px;
     }
 
-    .appointment-input{
-        width: 350px;
+    @media (max-width: 1000px) {
+        .form-appointment{
+            margin-right: 0;
+        }
     }
+
 </style>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -214,13 +218,13 @@ mysqli_close($db);
 
     
     <div class="container-fluid py-5 d-flex flex-column flex-lg-row justify-content-center bg-hero" id="service">
-        <div class="p-5 lc-block col-xxl-7 col-lg-8 col-12 jumbotron-content">
+        <div class="flex-fill p-5 lc-block jumbotron-content">
             <div class="lc-block">
                 <div editable="rich">
                     <h2 class="fw-bolder display-3">Meet the Best <br/> Hospital</h2>
                 </div>
             </div>
-            <div class="lc-block col-md-8 mt-5">
+            <div class="lc-block mt-5">
                 <div editable="rich">
                     <p class="lead fw-normal">
                         We know how large objects will act, 
@@ -233,7 +237,7 @@ mysqli_close($db);
                 <a class="button-transparent text-light text-center rounded-pill fw-semibold border-green" href="#">Learn More</a>
             </div>
         </div>
-        <form action="Appointment.php" id="appointment-form" method="POST" class="form-appointment d-flex flex-column text-black fw-semibold">
+        <form action="Appointment.php" id="appointment-form" method="POST" class="flex-fill form-appointment d-flex flex-column text-black fw-semibold">
             <h1>Book Appointment</h1>
             <div class="appointment-input d-flex flex-column gap-2">
                 <?php if(isset($_SESSION['id'])): ?>
