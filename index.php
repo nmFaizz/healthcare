@@ -4,7 +4,6 @@ session_start();
 
 include('config.php');
 
-
 $query = "SELECT * FROM dokter";
 $result = mysqli_query($db, $query);
 

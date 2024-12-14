@@ -9,7 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book_appointment'])) {
     $department = $_POST['department'];
     $waktu = $_POST['time'];
 
-
+    if (!isset($_SESSION['id'])) {
+        echo "<script>window.location.href = 'FormLogin.php';</script>";
+    }
+    
     if (empty($user_id) || empty($name) || empty($email) || empty($department) || empty($waktu)) {
         die("All fields are required. User ID: $user_id, Name: $name, Email: $email, Department: $department, Time: $waktu");
     }
