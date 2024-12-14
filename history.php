@@ -6,8 +6,7 @@
         exit();
     } 
 
-    $user_id = $_SESSION['user_id']; // Use the session user ID consistently
-
+    $user_id = $_SESSION['user_id']; 
     $sql = "SELECT * FROM appointment WHERE user_id=$user_id";
     $result = mysqli_query($db, $sql);
 
