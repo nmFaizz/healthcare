@@ -4,19 +4,45 @@
     if(!isset($_SESSION['id'])){
         header("location:FormLogin.php");
     }
-
-    $query = "SELECT COUNT(DISTINCT nama) AS distinct_nama FROM pasien";
-
-    $sql = mysqli_query($db, $query);
-
-    if ($sql) {
-        $row = mysqli_fetch_assoc($sql);
-        $result = $row['distinct_nama']; 
-    } else {
-        $result = "Error: " . mysqli_error($db); 
-    }
-    
 ?>
+
+<?php
+// Step 1: Connect to MySQL database
+include('config.php');  // assuming this file contains your DB connection details
+
+// Step 2: Write the SQL query to get the number of rows in the table
+$sql = "SELECT COUNT(*) AS total_rows FROM appointment";  // replace 'your_table_name' with your actual table name
+
+// Step 3: Execute the query
+$result = mysqli_query($db, $sql);  // assuming $db is your database connection
+
+$total_rows;
+// Step 4: Fetch the result
+if ($result) {
+    $row = mysqli_fetch_assoc($result);  // fetch the result as an associative array
+    $total_rows = $row['total_rows'];  // get the number of rows
+
+    // Step 5: Output the result
+    echo "Total rows in the table: " . $total_rows;
+} else {
+    echo "Error: " . mysqli_error($db);
+}
+
+// Close the database connection
+mysqli_close($db);
+?>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello, dokter <?=$_SESSION['nama']?></h1>
+</body>
+</html> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -109,8 +135,8 @@
         </div>
         <section class="d-flex flex-column flex-md-row gap-4 mt-3">
             <div class="stat-card d-flex flex-column justify-content-center align-items-center flex-fill bg-white">
-                <h1><?= $result ?></h1>
-                <p>Unapproved</p>
+                <?php echo "<h1>$total_rows</h1>" ?>
+                <p>Appointment</p>
             </div>
             <div class="stat-card d-flex flex-column justify-content-center align-items-center flex-fill bg-white">
                 <h1>150</h1>
