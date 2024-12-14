@@ -224,7 +224,7 @@ mysqli_close($db);
                 <p>At our hospital, we are dedicated to providing exceptional medical care to our patients and their families. Our experienced team of medical professionals, cutting-edge technology, and compassionate approach make us a leader in the healthcare industry</p>
 
                 <div class="mt-5">
-                    <a href="#" class="button-green">About Us</a>
+                    <a href="#" class="button-green">Explore</a>
                 </div>
             </div>
             <div class="flex-fill">
