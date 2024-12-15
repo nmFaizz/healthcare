@@ -7,15 +7,15 @@
     } 
 
     $user_id = $_SESSION['user_id']; 
-    $sql = "SELECT * FROM appointment WHERE user_id=$user_id";
+    $sql = "SELECT * FROM appointment WHERE user_id = $user_id ORDER BY id DESC";
     $result = mysqli_query($db, $sql);
 
-    $appointments = [];
-    if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $appointments[] = $row;
-        }
-    }
+    // $appointments = [];
+    // if (mysqli_num_rows($result) > 0) {
+    //     while ($row = mysqli_fetch_assoc($result)) {
+    //         $appointments[] = $row;
+    //     }
+    // }
 
     $sql_dokter = "SELECT * FROM dokter";
     $result_dokter = mysqli_query($db, $sql_dokter);
@@ -76,6 +76,18 @@
             text-align: center;
         }
 
+        .button-delete {
+            background-color: #FF0000;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .button-delete:hover {
+            background-color: #FF3333;
+        }
+
         .button-transparent:hover {
             background-color: whitesmoke;
             color: #007E85 !important;
@@ -119,38 +131,38 @@
 
     <h1 class="text-center mb-4">Appointment History</h1>
     <div class="container d-flex flex-column justify-content-center align-items-center mt-5">
-        <?php if (!empty($appointments)): ?>
-            <?php foreach ($appointments as $appointment): ?>
+        <?php if (mysqli_num_rows($result) > 0): ?>
+            <?php while ($appointment = mysqli_fetch_assoc($result)): ?>
                 <form action="FormEditAppointment.php" method="GET" class="form-login col-md-4 mb-4">
                     <input type="hidden" name="id" value="<?= $appointment['id'] ?>">
-                        <label class="form-label fw-semibold fs-5">Name:</label>
-                        <input id="nama" name="nama" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['nama']) ?>" readonly>
+                    <label class="form-label fw-semibold fs-5">Name:</label>
+                    <input id="nama" name="nama" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['nama']) ?>" readonly>
 
-                        <label class="form-label fw-semibold fs-5">Age:</label>
-                        <input id="email" name="umur" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['umur']) ?>" readonly>
+                    <label class="form-label fw-semibold fs-5">Age:</label>
+                    <input id="email" name="umur" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['umur']) ?>" readonly>
 
-                        <label class="form-label fw-semibold fs-5">Doctor:</label>
-                        <input id="department" name="dokter" class="form-control-plaintext" value="<?= htmlspecialchars(getDoctorName($dokter, $appointment['dokter_id'])) ?>" readonly>
+                    <label class="form-label fw-semibold fs-5">Doctor:</label>
+                    <input id="department" name="dokter" class="form-control-plaintext" value="<?= htmlspecialchars(getDoctorName($dokter, $appointment['dokter_id'])) ?>" readonly>
 
 
-                        <label class="form-label fw-semibold fs-5">Disease:</label>
-                        <input id="department" name="disease" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['disease']) ?>" readonly>
+                    <label class="form-label fw-semibold fs-5">Disease:</label>
+                    <input id="department" name="disease" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['disease']) ?>" readonly>
 
-                        <label class="form-label fw-semibold fs-5">Approve:</label>
-                        <?php if($appointment['approve']==TRUE): ?>
-                            <p class="text-success">APPROVE</p>
-                        <?php else: ?>
-                            <p class="text-danger">NOT APPROVE</p>
-                        <?php endif; ?>
-
-                        <label class="form-label fw-semibold fs-5">Time:</label>
-                        <input id="time" name="waktu" class="form-control-plaintext" value="<?= htmlspecialchars($appointment['waktu']) ?>" readonly>
-                    <?php if($appointment['approve']==0): ?>
-                        <button type="submit" name="get_appointment" class="button-green text-light text-center border-0 mt-3">Edit Appointment</button>
-                        <a href="history.php?delete_appointment=true&appointment_id=<?= $appointment['id'] ?>" class="button-transparent text-light text-center mt-3">Delete</a>
+                    <label class="form-label fw-semibold fs-5">Approve:</label>
+                    <?php if($appointment['approve']==TRUE): ?>
+                        <p class="text-success">APPROVE</p>
+                    <?php else: ?>
+                        <p class="text-danger">NOT APPROVED</p>
                     <?php endif; ?>
-            </form>
-            <?php endforeach; ?>
+
+                    <label class="form-label fw-semibold fs-5">Time:</label>
+                    <input id="time" name="waktu" class="form-control-plaintext mb-3" value="<?= htmlspecialchars($appointment['waktu']) ?>" readonly>
+                    <?php if($appointment['approve']==0): ?>
+                        <button type="submit" name="get_appointment" class="button-green text-light text-center border-0">Edit Appointment</button>
+                    <?php endif; ?>
+                    <a href="history.php?delete_appointment=true&appointment_id=<?= $appointment['id'] ?>" class="button-delete text-light text-center">Cancel</a>
+                </form>
+            <?php endwhile; ?>
         <?php else: ?>
             <p>No appointments found.</p>
         <?php endif; ?>

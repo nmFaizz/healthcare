@@ -4,14 +4,18 @@
     if(!isset($_SESSION['id'])){
         header("location:FormLogin.php");
     }
+
+    if (isset($_SESSION['role']) && $_SESSION['role'] === 'pasien') {
+        header("location:index.php");
+    }
+
     $dokter_id = $_SESSION['dokter_id'];
-include('config.php'); 
 
-$sql = "SELECT COUNT(*) AS total_rows FROM appointment WHERE dokter_id=$dokter_id";  
+    $sql = "SELECT COUNT(*) AS total_rows FROM appointment WHERE dokter_id=$dokter_id";  
 
-$result = mysqli_query($db, $sql);  
+    $result = mysqli_query($db, $sql);  
 
-$total_rows;
+    $total_rows;
 
 
 
@@ -116,6 +120,9 @@ mysqli_close($db);
         box-sizing: border-box;
     }
 
+    a {
+        text-decoration: none;
+    }
 
     .text-d-green {
         color: #005C63 !important;
@@ -131,6 +138,18 @@ mysqli_close($db);
 
     .bg-green {
         background-color: #007E85 !important;
+    }
+
+    .button-delete {
+        background-color: #FF0000;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+    }
+
+    .button-delete:hover {
+        background-color: #FF3333;
     }
 
     .button-transparent {
@@ -182,7 +201,7 @@ mysqli_close($db);
         <div class="d-flex flex-md-row align-items-center justify-content-between gap-4">
             <div class="d-flex align-items-center gap-4">
                 <figure id="profile" class="bg-black">
-        
+                    <img src="./images/anonymous.png" alt="anonymous" style="object-fit: cover; width: 100%; height: 100%; border-radius: 50%;">  
                 </figure>
                 <div>
                     <h5>Selamat Datang, Dr. <?= $_SESSION["nama"] ?></h5>
@@ -222,7 +241,7 @@ mysqli_close($db);
                                 <?php if ($appointment['approve'] == 0): ?>
                                     <a type="button" href="Dashboard.php?approved=true&app_id=<?= $appointment['id']; ?>" class="button-green">Approve</a>
                                 <?php endif; ?>
-                                <a href="Dashboard.php?delete=true&app_id=<?= $appointment['id']; ?>" class="button-transparent">Delete</a>
+                                <a href="Dashboard.php?delete=true&app_id=<?= $appointment['id']; ?>" class="button-delete">Delete</a>
                             </div>
                         </div>
                     <?php endwhile; ?>
@@ -241,13 +260,16 @@ mysqli_close($db);
                         <div class="mt-4 bg-white p-3 rounded">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h5 class="text-green"><?= $appointment["waktu"] ?></h5>
+                                    <h6 class="text-green"><?= $appointment["waktu"] ?></h6>
                                     <p class="fw-semibold"><?= htmlspecialchars($appointment['nama']); ?></p>
-                                    <p><?= htmlspecialchars($appointment['disease']); ?></p>
+                                    <p class="mb-4"><?= htmlspecialchars($appointment['disease']); ?></p>
+                                    <a href="Dashboard.php?delete=true&app_id=<?= $appointment['id']; ?>" class="button-delete">Delete</a>
                                 </div>
                             </div>
                         </div>
                     <?php endwhile; ?>
+                <?php else: ?>
+                    <p class="text-muted">No schedule available.</p>
                 <?php endif; ?>
             </div>
 

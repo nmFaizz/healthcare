@@ -1,3 +1,7 @@
+<?php 
+    $message = $_GET["message"] ?? null;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,6 +57,9 @@
                     <label for="pwd" class="form-label">Password</label>
                     <input type="password" name="pwd" class="form-control" id="pwd" placeholder="Enter your password" required>
                 </div>
+                <?php if ($message): ?>
+                    <p style="color: red;">Error: <?php echo htmlspecialchars("Incorrect Username or Password"); ?></p>
+                <?php endif; ?>
                 <div class="d-grid">
                     <button type="submit" name="login" class="btn-green">Login</button>
                 </div>

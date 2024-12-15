@@ -8,12 +8,12 @@ $query = "SELECT * FROM dokter";
 $result = mysqli_query($db, $query);
 
 
-$doctors = array();
-if ($result) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $doctors[] = $row;  
-    }
-}
+// $doctors = array();
+// if ($result) {
+//     while ($row = mysqli_fetch_assoc($result)) {
+//         $doctors[] = $row;  
+//     }
+// }
 
 if(isset($_SESSION['id'])){
     if ($_SESSION["role"] == "dokter") {
@@ -21,14 +21,8 @@ if(isset($_SESSION['id'])){
     }
 } 
 
-
-$doctors_json = json_encode($doctors);
-echo "<script>console.log(" . $doctors_json . ");</script>";
-echo "<script>const doctorsData = " . $doctors_json . ";</script>";
-
-
-mysqli_free_result($result);
-mysqli_close($db);
+// mysqli_free_result($result);
+// mysqli_close($db);
 
 ?>
 
@@ -375,74 +369,23 @@ mysqli_close($db);
         <section class="container-md" id="team-list">
             <h1 style="color: #007E85" class="text-center">Meet Our Team</h1>
             <p class="text-center mb-5">Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar <br> elementum tempus hac tellus libero accumsan. </p>
-
             <div class="row d-flex justify-content-center gap-4">
-                <div class="card col-4 bg-white px-4 py-5 rounded-4">
-                    <figure class="doctor-img d-flex justify-content-center align-items-center">
-                        <img src="./images/doc1.png" alt="doc1" class="object-fit-cover" style="width: 100%; height: 100%; object-fit: cover;">
-                    </figure>
+                <?php if (mysqli_num_rows($result) > 0): ?>
+                    <?php while ($doctors = mysqli_fetch_assoc($result)): ?>
+                        <div class="card col-4 bg-white px-4 py-5 rounded-4">
+                            <figure class="doctor-img d-flex justify-content-center align-items-center">
+                                <img src="./images/anonymous.png" alt="doc1" class="object-fit-cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                            </figure>
 
-                    <div class="text-center mt-5">
-                        <h5 class="text-green">John Carter</h5>
-                        <h6>CEO & CO-FOUNDER</h6>
-                        <p>Lorem ipsum dolor sit amet consecte adipiscing elit amet hendrerit pretium nulla sed enim iaculis mi.</p>
-                    </div>
-                </div>
-                <div class="card col-4 bg-white px-4 py-5 rounded-4">
-                    <figure class="doctor-img d-flex justify-content-center align-items-center">
-                        <img src="./images/doc2.png" alt="doc1" class="object-fit-cover" style="width: 100%; height: 100%; object-fit: cover;">
-                    </figure>
-
-                    <div class="text-center mt-5">
-                        <h5 class="text-green">Sophie Moore</h5>
-                        <h6>DENTAL SPECIALIST</h6>
-                        <p>Lorem ipsum dolor sit amet consecte adipiscing elit amet hendrerit pretium nulla sed enim iaculis mi.</p>
-                    </div>
-                </div>
-                <div class="card col-4 bg-white px-4 py-5 rounded-4">
-                    <figure class="doctor-img d-flex justify-content-center align-items-center">
-                        <img src="./images/doc3.png" alt="doc1" class="object-fit-cover" style="width: 100%; height: 100%; object-fit: cover;">
-                    </figure>
-
-                    <div class="text-center mt-5">
-                        <h5 class="text-green">Matt Cannon</h5>
-                        <h6>ORTHOPEDIC</h6>
-                        <p>Lorem ipsum dolor sit amet consecte adipiscing elit amet hendrerit pretium nulla sed enim iaculis mi.</p>
-                    </div>
-                </div>
-                <div class="card col-4 bg-white px-4 py-5 rounded-4">
-                    <figure class="doctor-img d-flex justify-content-center align-items-center">
-                        <img src="./images/doc4.png" alt="doc1" class="object-fit-cover" style="width: 100%; height: 100%; object-fit: cover;">
-                    </figure>
-
-                    <div class="text-center mt-5">
-                        <h5 class="text-green">Andy Smith</h5>
-                        <h6>BRAIN SURGEON</h6>
-                        <p>Lorem ipsum dolor sit amet consecte adipiscing elit amet hendrerit pretium nulla sed enim iaculis mi.</p>
-                    </div>
-                </div>
-                <div class="card col-4 bg-white px-4 py-5 rounded-4">
-                    <figure class="doctor-img d-flex justify-content-center align-items-center">
-                        <img src="./images/doc5.png" alt="doc1" class="object-fit-cover" style="width: 100%; height: 100%; object-fit: cover;">
-                    </figure>
-
-                    <div class="text-center mt-5">
-                        <h5 class="text-green">Lily Woods</h5>
-                        <h6>HEART SPECIALIST</h6>
-                        <p>Lorem ipsum dolor sit amet consecte adipiscing elit amet hendrerit pretium nulla sed enim iaculis mi.</p>
-                    </div>
-                </div>
-                <div class="card col-4 bg-white px-4 py-5 rounded-4">
-                    <figure class="doctor-img d-flex justify-content-center align-items-center">
-                        <img src="./images/doc6.png" alt="doc1" class="object-fit-cover" style="width: 100%; height: 100%; object-fit: cover;">
-                    </figure>
-
-                    <div class="text-center mt-5">
-                        <h5 class="text-green">Patrick Meyer</h5>
-                        <h6>EYE SPECIALIST</h6>
-                        <p>Lorem ipsum dolor sit amet consecte adipiscing elit amet hendrerit pretium nulla sed enim iaculis mi.</p>
-                    </div>
-                </div>
+                            <div class="text-center mt-5">
+                                <h5 class="text-green"><?= htmlspecialchars($doctors["nama"]) ?></h5>
+                                <h6><?= htmlspecialchars($doctors["speciality"]) ?></h6>
+                                <p>Lorem ipsum dolor sit amet consecte adipiscing elit amet hendrerit pretium nulla sed enim iaculis mi.</p>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+            </div>
         </section>
 
         <section id="testimonials" class="container-md mt-7">
